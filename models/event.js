@@ -20,7 +20,7 @@ let alphaNumericChecker = (name) => {
     if(!name) {
         return false;
     } else {
-        const regExp = new RegExp(/^[a-zA-Z90-9]+$/);
+        const regExp = new RegExp(/^[a-z\d\-_\s]+$/i);
         return regExp.test(name);
     }
 };
@@ -37,10 +37,18 @@ const nameValidators = [
 ];
 
 /** EVENT CITY VALIDATORS **/
+let alphaNumericWithSpacesChecker = (city) => {
+    if(!city) {
+        return false;
+    } else {
+        const regExp = new RegExp(/^[a-z\d\-_\s]+$/i);
+        return regExp.test(city);
+    }
+};
 const cityValidators = [
     {
-        validator: alphaNumericChecker,
-        message: 'Name must only contain alphanumeric characters'
+        validator: alphaNumericWithSpacesChecker,
+        message: 'City name must only contain alphanumeric characters'
     }
 ];
 

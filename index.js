@@ -7,7 +7,7 @@ mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const path = require('path');
 const authentication = require('./routes/authentication')(router);
-// const events = require('./routes/event')(router);
+const events = require('./routes/event')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const port = process.env.PORT || 8080;
@@ -27,7 +27,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-
 app.use(bodyParser.json()); // Parse application/json
 app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
 app.use('/authentication', authentication);
-// app.use('/events', events);
+app.use('/events', events);
 
 /** Connect server to Angular 2 index.html **/
 app.get('*', (req, res) => {

@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 
 module.exports = (router) => {
+    /** CREATE NEW EVENT ROUTE **/
     router.post('/newEvent', (req, res) => {
         if(!req.body.name) {
             res.json({ success: false, message: 'Event name is required' });
@@ -63,5 +64,21 @@ module.exports = (router) => {
             }
         }
     });
+
+    /** GET ALL EVENTS **/
+    router.get('/allEvents', (req, res) => {
+        Event.find({}, (err, events) => {
+            if(err) {
+                res.json({ success: false, message: err });
+            } else {
+                if(!events) {
+                    res.json({ success: false, message: 'No events found.' });
+                } else {
+                    res.json({ success: true, events: events });
+                }
+            }
+        }).sort({ '_id': -1 });
+    });
+
     return router;
 };
