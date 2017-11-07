@@ -1,3 +1,25 @@
-<p>
-  events works!
-</p>
+<h3 class="page-header">Events</h3>
+
+<!--New Event Button-->
+
+
+<!--Custom Success/Error Message-->
+<div class="row show-hide-message" *ngIf="message && newEvent">
+  <div [ngClass]="messageClass">
+    {{ message }}
+  </div>
+</div>
+
+
+<div class="panel panel-primary" *ngFor="let event of eventPosts">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ event.name }}</h3>
+  </div>
+  <div class="panel-body">
+    <em>{{ event.date | date: 'MMM dd' }}</em><br>
+    <p>{{ event.city }},&nbsp;{{ event.state }}</p>
+    <a href="{{ event.url }}" target="_blank">Event Link</a>
+  </div>
+</div>
+
+<button type="button" name="button" class="btn btn-warning" *ngIf="!newEvent" (click)="newEventForm()">New Event</button>

@@ -77,7 +77,7 @@ module.exports = (router) => {
                     res.json({ success: true, events: events });
                 }
             }
-        }).sort({ '_id': -1 });
+        }).sort({ '_id': 1 });
     });
 
     return router;
