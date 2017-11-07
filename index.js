@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 const config = require('./config/database');
 const path = require('path');
-// const authentication = require('./routes/authentication')(router);
+const authentication = require('./routes/authentication')(router);
 // const events = require('./routes/event')(router);
 const bodyParser = require('body-parser');
 const cors = require('cors');
@@ -26,8 +26,8 @@ app.use(cors({ origin: 'http://localhost:4200 '}));
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
 app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
-// app.use('/authentication', authentication);
-// app.use('/blogs', blogs);
+app.use('/authentication', authentication);
+// app.use('/events', events);
 
 /** Connect server to Angular 2 index.html **/
 app.get('*', (req, res) => {
