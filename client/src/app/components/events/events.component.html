@@ -10,8 +10,8 @@
     <a href="{{ event.url }}" target="_blank">Event Link</a>
   </div>
   <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
-    <button class="btn btn-danger" type="button">Delete Event</button>
     <button class="btn btn-warning" type="button">Edit Event</button>
+    <button class="btn btn-danger" type="button" [routerLink]="['/delete-event/', event._id]">Delete Event</button>
   </div>
 </div>
 
