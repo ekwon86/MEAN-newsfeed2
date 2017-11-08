@@ -22,4 +22,60 @@
   </div>
 </div>
 
-<button type="button" name="button" class="btn btn-warning" *ngIf="!newEvent" (click)="newEventForm()">New Event</button>
+<div class="panel panel-warning" *ngIf="newEvent">
+  <div class="panel-heading">New Event</div>
+  <div class="panel-body">
+    <form  (submit)="onEventSubmit()" name="eventForm" [formGroup]="form">
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+            <div class="form-group">
+              <label for="name">Event Name:</label>
+              <div [ngClass]="{'has-success': form.controls.name.valid, ' has-error': form.controls.name.dirty && form.controls.name.errors}">
+                <input type="text" name="name" class="form-control" autocomplete="off" formControlName="name" />
+              </div>
+            </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-3">
+          <div class="form-group">
+            <label for="city">Event City</label>
+            <div [ngClass]="{'has-success': form.controls.city.valid, 'has-error': form.controls.city.dirty && form.controls.city.errors}">
+              <input type="text" name="city" class="form-control" autocomplete="off" formControlName="city"/>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+            <label for="state">Event State</label>
+            <div [ngClass]="{'has-success': form.controls.state.valid, 'has-error': form.controls.state.dirty && form.controls.state.errors}">
+              <select name="state" class="form-control" formControlName="state">
+                <option value="">Select</option>
+                <option *ngFor="let state of states" value="{{ state.abbreviation }}">{{ state.name }}</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-6">
+          <div class="form-group">
+            <label for="url">Event URL</label>
+            <div [ngClass]="{'has-success': form.controls.url.valid, 'has-error': form.controls.url.dirty && form.controls.url.errors}">
+              <input type="text" name="url" class="form-control" autocomplete="off" formControlName="url"/>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row ">
+        <div class="col-md-12 text-right">
+          <button class="btn btn-success"><i class="fa fa-check web-icons" aria-hidden="true"></i>Save Event</button>
+          <button class="btn btn-danger" (click)="cancelEventForm();"><i class="fa fa-times web-icons" aria-hidden="true" ></i>Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
+<button type="button" name="button" class="btn btn-warning pull-right" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>
