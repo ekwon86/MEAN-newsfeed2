@@ -1,16 +1,5 @@
 <h3 class="page-header">Events</h3>
 
-<!--New Event Button-->
-
-
-<!--Custom Success/Error Message-->
-<div class="row show-hide-message" *ngIf="message && newEvent">
-  <div [ngClass]="messageClass">
-    {{ message }}
-  </div>
-</div>
-
-
 <div class="panel panel-primary" *ngFor="let event of eventPosts">
   <div class="panel-heading">
     <h3 class="panel-title">{{ event.name }}</h3>
@@ -22,9 +11,18 @@
   </div>
 </div>
 
-<div class="panel panel-warning" *ngIf="newEvent">
+<!--NEW EVENT FORM-->
+<div class="panel panel-info" *ngIf="newEvent">
   <div class="panel-heading">New Event</div>
   <div class="panel-body">
+    <!--Custom Success/Error Message-->
+    <div class="row">
+      <div class="col-md-12 show-hide-message" *ngIf="message && newEvent">
+        <div [ngClass]="messageClass">
+          {{ message }}
+        </div>
+      </div>
+    </div>
     <form  (submit)="onEventSubmit()" name="eventForm" [formGroup]="form">
       <div class="row">
         <div class="col-md-offset-3 col-md-6">
@@ -51,8 +49,18 @@
             <div [ngClass]="{'has-success': form.controls.state.valid, 'has-error': form.controls.state.dirty && form.controls.state.errors}">
               <select name="state" class="form-control" formControlName="state">
                 <option value="">Select</option>
-                <option *ngFor="let state of states" value="{{ state.abbreviation }}">{{ state.name }}</option>
+                <option *ngFor="let state of states" value="{{ state.name }}">{{ state.name }}</option>
               </select>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-offset-3 col-md-3">
+          <div class="form-group">
+            <label for="date">Event Date</label>
+            <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
+              <input type="date" name="date" class="form-control" autocomplete="off" formControlName="date"/>
             </div>
           </div>
         </div>
@@ -76,6 +84,7 @@
     </form>
   </div>
 </div>
+<!-- END NEW EVENT FORM-->
 
 
-<button type="button" name="button" class="btn btn-warning pull-right" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>
+<button type="button" name="button" class="btn btn-info pull-right" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>

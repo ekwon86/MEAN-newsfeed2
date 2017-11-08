@@ -31,10 +31,6 @@ export class EventsComponent implements OnInit {
       "abbreviation": "AK"
     },
     {
-      "name": "American Samoa",
-      "abbreviation": "AS"
-    },
-    {
       "name": "Arizona",
       "abbreviation": "AZ"
     },
@@ -63,20 +59,12 @@ export class EventsComponent implements OnInit {
       "abbreviation": "DC"
     },
     {
-      "name": "Federated States Of Micronesia",
-      "abbreviation": "FM"
-    },
-    {
       "name": "Florida",
       "abbreviation": "FL"
     },
     {
       "name": "Georgia",
       "abbreviation": "GA"
-    },
-    {
-      "name": "Guam",
-      "abbreviation": "GU"
     },
     {
       "name": "Hawaii",
@@ -113,10 +101,6 @@ export class EventsComponent implements OnInit {
     {
       "name": "Maine",
       "abbreviation": "ME"
-    },
-    {
-      "name": "Marshall Islands",
-      "abbreviation": "MH"
     },
     {
       "name": "Maryland",
@@ -179,10 +163,6 @@ export class EventsComponent implements OnInit {
       "abbreviation": "ND"
     },
     {
-      "name": "Northern Mariana Islands",
-      "abbreviation": "MP"
-    },
-    {
       "name": "Ohio",
       "abbreviation": "OH"
     },
@@ -193,10 +173,6 @@ export class EventsComponent implements OnInit {
     {
       "name": "Oregon",
       "abbreviation": "OR"
-    },
-    {
-      "name": "Palau",
-      "abbreviation": "PW"
     },
     {
       "name": "Pennsylvania",
@@ -235,10 +211,6 @@ export class EventsComponent implements OnInit {
       "abbreviation": "VT"
     },
     {
-      "name": "Virgin Islands",
-      "abbreviation": "VI"
-    },
-    {
       "name": "Virginia",
       "abbreviation": "VA"
     },
@@ -258,7 +230,7 @@ export class EventsComponent implements OnInit {
       "name": "Wyoming",
       "abbreviation": "WY"
     }
-  ]
+  ];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -271,11 +243,9 @@ export class EventsComponent implements OnInit {
   /** NEW EVENT / CANCEL EVENT BUTTONS **/
   newEventForm() {
     this.newEvent = true;
-    console.log(this.newEvent);
   }
   cancelEventForm() {
     this.newEvent = false;
-    console.log(this.newEvent);
   }
 
 
@@ -307,9 +277,57 @@ export class EventsComponent implements OnInit {
 
   /** SUBMIT EVENT **/
   onEventSubmit() {
+    this.processing = true;
+    this.disableFormNewEventForm();
 
+    const event = {
+      name: this.form.get('name').value,
+      city: this.form.get('city').value,
+      date: this.form.get('date').value,
+      state: this.form.get('state').value,
+      url: this.form.get('url').value
+    };
+
+    this.eventService.newEvent(event).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+        this.enableFormNewEventForm();
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.newEvent = false;
+          this.processing = false;
+          this.message = false;
+          this.form.reset();
+          this.enableFormNewEventForm();
+          this.getAllEvents();
+        }, 3000);
+      }
+    });
   }
 
+  /** ENABLE/DISABLE FORM WHEN SUBMITTING **/
+  enableFormNewEventForm() {
+    this.form.get('name').enable();
+    this.form.get('city').enable();
+    this.form.get('date').enable();
+    this.form.get('state').enable();
+    this.form.get('url').enable();
+  }
+
+  disableFormNewEventForm() {
+    this.form.get('name').disable();
+    this.form.get('city').disable();
+    this.form.get('date').disable();
+    this.form.get('state').disable();
+    this.form.get('url').disable();
+  }
+
+
+  /** FORM VALIDATION **/
   alphaNumericWithSpacesValidation(controls) {
     const regExp = new RegExp(/^[a-z\d\-_\s]+$/i);
     if(regExp.test(controls.value)) {
@@ -333,7 +351,6 @@ export class EventsComponent implements OnInit {
         this.eventPosts = data.events;
     });
   }
-
 
   ngOnInit() {
     this.getAllEvents();

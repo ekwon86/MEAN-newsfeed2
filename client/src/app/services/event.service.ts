@@ -30,4 +30,10 @@ export class EventService {
     this.createAuthenticationHeaders();
     return this.http.get(this.domain + 'events/allEvents', this.options).map(res => res.json());
   }
+
+  // Function to create a new event post
+  newEvent(event) {
+    this.createAuthenticationHeaders();
+    return this.http.post(this.domain + 'events/newEvent', event, this.options).map(res => res.json());
+  }
 }
