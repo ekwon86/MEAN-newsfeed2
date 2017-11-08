@@ -15,7 +15,7 @@ export class AuthService {
     private http: Http
   ) { }
 
-  // Function to create headers, add token, to be used in HTTP headers
+  /** FUNCTION TO CREATE HEADERS, ADD TOKEN, AND USE IT IN HTTP HEADERS **/
   createAuthHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
     // Headers config options
@@ -27,12 +27,17 @@ export class AuthService {
     });
   }
 
-  // Function to get token from client local storage
+  /** LOG USER IN **/
+  login(user) {
+    return this.http.post(this.domain + 'authentication/login', user).map(res => res.json());
+  }
+
+  /** GET TOKEN FROM LOCAL STORAGE **/
   loadToken() {
     this.authToken = localStorage.getItem('token');
   }
 
-  // Funtion to check if user is logged in
+  /** CHECK IF ADMIN IS LOGGED IN **/
   loggedIn() {
     return tokenNotExpired();
   }
