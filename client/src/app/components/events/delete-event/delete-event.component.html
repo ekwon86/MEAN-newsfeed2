@@ -1,12 +1,13 @@
 <h1 class="page-header">Delete Event</h1>
 
 <!-- Custom Success/Error Message -->
-<div class="row show-hide-message" *ngIf="message">
-  <div [ngClass]="messageClass">
-    {{ message }}
+<div class="row">
+  <div class="col-md-12 show-hide-message" *ngIf="message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
   </div>
 </div>
-
 
 <div class="panel panel-danger" *ngIf="foundEvent">
   <div class="panel-heading">

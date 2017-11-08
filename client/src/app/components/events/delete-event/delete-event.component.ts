@@ -29,7 +29,7 @@ export class DeleteEventComponent implements OnInit {
           this.messageClass = 'alert alert-danger';
           this.message = data.message;
         } else {
-          this.messageClass = 'alert-alert-success';
+          this.messageClass = 'alert alert-success';
           this.message = data.message;
           setTimeout(() => {
             this.router.navigate(['/events']);

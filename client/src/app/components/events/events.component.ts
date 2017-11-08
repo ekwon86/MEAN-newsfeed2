@@ -304,7 +304,7 @@ export class EventsComponent implements OnInit {
           this.form.reset();
           this.enableFormNewEventForm();
           this.getAllEvents();
-        }, 3000);
+        }, 2000);
       }
     });
   }

@@ -1,3 +1,14 @@
-<p>
-  edit-event works!
-</p>
+<h1 class="page-header">Edit Event</h1>
+
+<!-- Custom Success/Error Message -->
+<div class="row">
+  <div class="col-md-12 show-hide-message" *ngIf="message">
+    <div [ngClass]="messageClass">
+      {{ message }}
+    </div>
+  </div>
+</div>
+
+<form (submit)="updateEventSubmit()" *ngIf="!loading">
+
+</form>
