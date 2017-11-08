@@ -44,6 +44,12 @@ export class EventService {
     return this.http.post(this.domain + 'events/newEvent', event, this.options).map(res => res.json());
   }
 
+  // Function to edit event
+  editEvent(event) {
+    this.createAuthenticationHeaders();
+    return this.http.put(this.domain + 'events/updateEvent', event, this.options).map(res => res.json());
+  }
+
   // Function to delete event post
   deleteEvent(id) {
     this.createAuthenticationHeaders();

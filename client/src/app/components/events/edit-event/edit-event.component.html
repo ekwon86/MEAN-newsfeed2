@@ -9,6 +9,52 @@
   </div>
 </div>
 
-<form (submit)="updateEventSubmit()" *ngIf="!loading">
+  <form (submit)="updateEventSubmit()" *ngIf="!loading">
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <div class="form-group">
+          <label for="name">Event Name</label>
+          <input [disabled]="processing" type="text" name="name" class="form-control" [(ngModel)]="event.name"/>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-3 col-md-3">
+        <div class="form-group">
+          <label for="city">Event City</label>
+          <input [disabled]="processing" type="text" name="city" class="form-control" [(ngModel)]="event.city">
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-group">
+          <label for="state">Event State</label>
+          <select [disabled]="processing" name="state" class="form-control" [(ngModel)]="event.state">
+            <option value="">Select</option>
+            <option *ngFor="let state of states" value="{{ state.abbreviation }}">{{ state.name }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-offset-3 col-md-6">
+        <div class="form-group">
+          <label for="url">Event URL</label>
+          <input [disabled]="processing" name="url" class="form-control" type="text" [(ngModel)]="event.url">
+        </div>
+      </div>
+    </div>
 
-</form>
+    <div class="row">
+      <div class="col-md-offset-3 col-md-3">
+        <a [routerLink]="['/delete-event/', event._id]">
+          <button [disabled]="processing" type="button" class="btn btn-danger"><i class="fa fa-trash web-icons" aria-hidden="true"></i>Delete</button>
+        </a>
+      </div>
+      <div class="col-md-3 text-right">
+
+        <button [disabled]="processing" type="button" name="button" class="cancel-button btn btn-default" (click)="goBack();">Cancel</button>
+        <button [disabled]="processing" type="submit" name="save" class="btn btn-info"><i class="fa fa-check web-icons" aria-hidden="true"></i>Save Changes</button>
+      </div>
+    </div>
+  </form>
+

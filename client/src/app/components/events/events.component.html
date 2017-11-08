@@ -10,8 +10,8 @@
     <a href="{{ event.url }}" target="_blank">Event Link</a>
   </div>
   <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
-    <button class="btn btn-warning" type="button" [routerLink]="['/edit-event', event._id]">Edit Event</button>
-    <button class="btn btn-danger" type="button" [routerLink]="['/delete-event/', event._id]">Delete Event</button>
+    <button class="btn btn-warning" type="button" [routerLink]="['/edit-event', event._id]"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+    <!--<button class="btn btn-danger" type="button" [routerLink]="['/delete-event/', event._id]">Delete Event</button>-->
   </div>
 </div>
 
@@ -91,7 +91,7 @@
 
 <div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
   <div class="col-md-12" >
-    <button type="button" name="button" class="btn btn-success btn-lg" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>
+    <button type="button" name="button" class="btn btn-success btn-md" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>
   </div>
 </div>
 

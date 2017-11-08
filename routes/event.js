@@ -99,6 +99,40 @@ module.exports = (router) => {
         }).sort({ '_id': 1 });
     });
 
+    /** UPDATE EVENT **/
+    router.put('/updateEvent', (req, res) => {
+        if(!req.body._id) {
+            res.json({ success: false, message: 'No event ID was provided' });
+        } else {
+            Event.findOne({ _id: req.body._id }, (err, event) => {
+                if(err) {
+                    res.json({ success: false, message: 'Not a valid event ID' });
+                } else {
+                    if(!event) {
+                        res.json({ success: false, message: 'Event ID was not found' });
+                    } else {
+                        event.name = req.body.name;
+                        event.date = req.body.date;
+                        event.city = req.body.city;
+                        event.state = req.body.state;
+                        event.url = req.body.url;
+                        event.save((err) => {
+                           if(err) {
+                               if(err.errors) {
+                                   res.json({ success: false, message: 'Please ensure this form is filled out properly' });
+                               } else {
+                                   res.json({ success: false, message: err });
+                               }
+                           } else {
+                               res.json({ success: true, message: 'Event has been updated' });
+                           }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
     /** DELETE EVENT **/
     router.delete('/deleteEvent/:id', (req, res) => {
         if(!req.params.id) {

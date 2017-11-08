@@ -1,6 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 .web-icons {
-  margin-right: 10px;
+  margin-right: 6px;
 }
 * {
   font-family: 'Roboto Condensed', sans-serif;
@@ -8,6 +8,10 @@
 
 h1, h2, h3, h4, h5 {
   margin: 0 !important;
+}
+
+.page-header {
+  margin-bottom: 15px !important;
 }
 
 .add-button-container {
