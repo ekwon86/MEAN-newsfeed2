@@ -52,10 +52,28 @@ export class LoginComponent implements OnInit {
     const user = {
       username: this.form.get('username').value,
       password: this.form.get('password').value
-    }
+    };
+
+    this.authService.login(user).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+        this.enableForm();
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        this.authService.storeUserData(data.token, data.user);
+        setTimeout(() => {
+          if(this.previousUrl) {
+            this.router.navigate([this.previousUrl]);
+          } else {
+            this.router.navigate(['/']);
+          }
+        }, 2000);
+      }
+    });
   }
-
-
 
 
   ngOnInit() {

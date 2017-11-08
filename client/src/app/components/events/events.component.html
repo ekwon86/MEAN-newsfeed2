@@ -1,4 +1,4 @@
-<h3 class="page-header">Events</h3>
+<h1 class="page-header">Events</h1>
 
 <div class="panel panel-primary" *ngFor="let event of eventPosts">
   <div class="panel-heading">
@@ -8,6 +8,10 @@
     <em>{{ event.date | date: 'MMM dd' }}</em><br>
     <p>{{ event.city }},&nbsp;{{ event.state }}</p>
     <a href="{{ event.url }}" target="_blank">Event Link</a>
+  </div>
+  <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
+    <button class="btn btn-danger" type="button">Delete Event</button>
+    <button class="btn btn-warning" type="button">Edit Event</button>
   </div>
 </div>
 

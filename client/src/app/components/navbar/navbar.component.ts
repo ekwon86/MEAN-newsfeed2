@@ -20,4 +20,9 @@ export class NavbarComponent implements OnInit {
   ngOnInit() {
   }
 
+  onLogoutClick() {
+    this.authService.logout();
+    this.flashMessagesService.show('You are logged out', { cssClass: 'alert-info' });
+    this.router.navigate(['/']);
+  }
 }

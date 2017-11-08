@@ -80,5 +80,30 @@ module.exports = (router) => {
         }).sort({ '_id': 1 });
     });
 
+    /** DELETE EVENT **/
+    router.delete('/deleteEvent/:id', (req, res) => {
+        if(!req.params.id) {
+            res.json({ success: false, message: 'No ID provided' });
+        } else {
+            Event.findOne({ _id: req.params.id }, (err, event) => {
+                if(err) {
+                    res.json({ success: false, message: 'Invalid ID' });
+                } else {
+                    if(!event) {
+                        res.json({ success: false, message: 'Event was not found' });
+                    } else {
+                        event.remove((err) => {
+                            if(err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Event deleted' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
     return router;
 };

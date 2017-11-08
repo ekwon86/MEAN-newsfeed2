@@ -15,6 +15,19 @@ export class AuthService {
     private http: Http
   ) { }
 
+
+  /** LOG USER IN **/
+  login(user) {
+    return this.http.post(this.domain + 'authentication/login', user).map(res => res.json());
+  }
+
+  /** LOG USER OUT **/
+  logout() {
+    this.authToken = null;
+    this.user = null;
+    localStorage.clear();
+  }
+
   /** FUNCTION TO CREATE HEADERS, ADD TOKEN, AND USE IT IN HTTP HEADERS **/
   createAuthHeaders() {
     this.loadToken(); // Get token so it can be attached to headers
@@ -27,9 +40,12 @@ export class AuthService {
     });
   }
 
-  /** LOG USER IN **/
-  login(user) {
-    return this.http.post(this.domain + 'authentication/login', user).map(res => res.json());
+  /** STORE USER DATA IN CLIENT LOCAL STORAGE **/
+  storeUserData(token, user) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('user', JSON.stringify(user));
+    this.authToken = token;
+    this.user = user;
   }
 
   /** GET TOKEN FROM LOCAL STORAGE **/
