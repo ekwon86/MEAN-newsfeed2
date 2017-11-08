@@ -25,6 +25,13 @@ export class EventService {
     });
   }
 
+  // Function to get single event
+  getSingleEvent(id) {
+    this.createAuthenticationHeaders();
+    return this.http.get(this.domain + 'events/singleEvent/' + id, this.options).map(res => res.json());
+  }
+
+
   // Function to get all events from the db
   getAllEvents(){
     this.createAuthenticationHeaders();
@@ -35,5 +42,11 @@ export class EventService {
   newEvent(event) {
     this.createAuthenticationHeaders();
     return this.http.post(this.domain + 'events/newEvent', event, this.options).map(res => res.json());
+  }
+
+  // Function to delete event post
+  deleteEvent(id) {
+    this.createAuthenticationHeaders();
+    return this.http.delete(this.domain + 'events/deleteEvent/' + id, this.options).map(res => res.json());
   }
 }

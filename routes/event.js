@@ -65,6 +65,25 @@ module.exports = (router) => {
         }
     });
 
+    /** GET SINGLE EVENT **/
+    router.get('/singleEvent/:id', (req, res) => {
+        if(!req.params.id) {
+            res.json({ success: false, message: 'No event ID was provided' });
+        } else {
+            Event.findOne({ _id: req.params.id }, (err, event) => {
+                if(err) {
+                    res.json({ success: false, message: 'Not a valid event ID' });
+                } else {
+                    if(!event) {
+                        res.json({ success: false, message: 'Event not found' });
+                    } else {
+                        res.json({ success: true, event: event });
+                    }
+                }
+            });
+        }
+    });
+
     /** GET ALL EVENTS **/
     router.get('/allEvents', (req, res) => {
         Event.find({}, (err, events) => {

@@ -2,6 +2,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
+import { DeleteEventComponent } from './components/events/delete-event/delete-event.component';
+import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 
 const appRoutes: Routes = [
   {
@@ -11,6 +13,14 @@ const appRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'edit-event/:id',
+    component: EditEventComponent
+  },
+  {
+    path: 'delete-event/:id',
+    component: DeleteEventComponent
   },
   { path: '**', component: HomeComponent }
 ];
