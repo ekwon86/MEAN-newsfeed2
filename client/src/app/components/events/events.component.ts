@@ -15,12 +15,9 @@ export class EventsComponent implements OnInit {
   newEvent = false;
   loadingEvents = false;
   form;
-  commentForm;
   processing = false;
   username;
   eventPosts;
-  newComment = [];
-  enabledcomments =[];
   states = [
     {
       "name": "Alabama",

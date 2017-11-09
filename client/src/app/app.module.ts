@@ -14,15 +14,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { EditEventComponent } from './components/events/edit-event/edit-event.component';
 import { DeleteEventComponent } from './components/events/delete-event/delete-event.component';
 import { RegisterComponent } from './components/register/register.component';
-import { ProdAdminComponent } from './components/home/prod-admin/prod-admin.component';
-import { ProdUserComponent } from './components/home/prod-user/prod-user.component';
-import { DevAdminComponent } from './components/home/dev-admin/dev-admin.component';
-import { DevUserComponent } from './components/home/dev-user/dev-user.component';
-import { EnterpriseComponent } from './components/home/enterprise/enterprise.component';
+import { FeaturesComponent } from './components/features/features.component';
 
 import { AuthService } from './services/auth.service';
 import { EventService } from './services/event.service';
-
+import { FeatureService } from './services/feature.service';
 
 @NgModule({
   declarations: [
@@ -34,11 +30,7 @@ import { EventService } from './services/event.service';
     EditEventComponent,
     DeleteEventComponent,
     RegisterComponent,
-    ProdAdminComponent,
-    ProdUserComponent,
-    DevAdminComponent,
-    DevUserComponent,
-    EnterpriseComponent
+    FeaturesComponent
   ],
   imports: [
     BrowserModule,
@@ -50,7 +42,8 @@ import { EventService } from './services/event.service';
   ],
   providers: [
     AuthService,
-    EventService
+    EventService,
+    FeatureService
   ],
   bootstrap: [AppComponent]
 })

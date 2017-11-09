@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
     const str = window.location.href;
     const tmp = str.lastIndexOf("/");
     const result = str.substring(tmp + 1);
-    console.log(result);
+
     if(result === "dev-admin") {
       this.isDevAdmin = true;
     } else if (result === "dev-user") {
