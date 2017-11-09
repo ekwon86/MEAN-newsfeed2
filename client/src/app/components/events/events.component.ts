@@ -234,7 +234,7 @@ export class EventsComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
-    private authService: AuthService,
+    public authService: AuthService,
     private eventService: EventService
   ) {
     this.createNewEventForm();

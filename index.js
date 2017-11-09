@@ -25,7 +25,13 @@ mongoose.connect(config.uri, (err) => {
 app.use(cors({ origin: 'http://localhost:4200 '}));
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
-app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
+
+// DEVELOPMENT
+// app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
+// PRODUCTION
+app.use(express.static(__dirname + '/public'));
+
+/** Routes **/
 app.use('/authentication', authentication);
 app.use('/events', events);
 
