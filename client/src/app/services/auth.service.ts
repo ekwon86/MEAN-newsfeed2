@@ -6,8 +6,8 @@ import { tokenNotExpired } from 'angular2-jwt';
 @Injectable()
 export class AuthService {
 
-  // domain = 'http://localhost:8080/'; // Development Domain - Not needed in production
-  domain = '';
+  domain = 'http://localhost:8080/'; // Development Domain - Not needed in production
+  // domain = '';
   authToken;
   user;
   options;
@@ -16,6 +16,10 @@ export class AuthService {
     private http: Http
   ) { }
 
+  /** REGISTER USER **/
+  registerUser(user) {
+    return this.http.post(this.domain + 'authentication/register', user).map(res => res.json());
+  }
 
   /** LOG USER IN **/
   login(user) {
