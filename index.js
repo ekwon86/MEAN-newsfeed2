@@ -37,7 +37,7 @@ app.use('/events', events);
 
 // /** Connect server to Angular 2 index.html **/
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
+    res.sendFile('/public/index.html');
 });
 
 /** Start Server: listen on port 8080 **/
