@@ -35,10 +35,10 @@ app.use(express.static(__dirname + '/public'));
 app.use('/authentication', authentication);
 app.use('/events', events);
 
-/** Connect server to Angular 2 index.html **/
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname + '/public/index.html'));
-});
+// /** Connect server to Angular 2 index.html **/
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname + '/public/index.html'));
+// });
 
 /** Start Server: listen on port 8080 **/
 app.listen(port, () => {
