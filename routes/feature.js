@@ -44,6 +44,26 @@ module.exports = (router) => {
         }
     });
 
+
+    /** GET SINGLE FEATURE **/
+    router.get('/singleFeature/:id', (req, res) => {
+        if(!req.params.id) {
+            res.json({ success: false, message: 'No feature ID was provided' });
+        } else {
+            Feature.findOne({ _id: req.params.id }, (err, feature) => {
+                if(err) {
+                    res.json({ success: false, message: 'Not a valid feature ID' });
+                } else {
+                    if(!feature) {
+                        res.json({ success: false, message: 'Feature not found' });
+                    } else {
+                        res.json({ success: true, feature: feature });
+                    }
+                }
+            });
+        }
+    });
+
     /** GET ALL FEATURES **/
     router.get('/allFeatures', (req, res) => {
         Feature.find({}, (err, features) => {
@@ -53,10 +73,67 @@ module.exports = (router) => {
                 if(!features) {
                     res.json({ success: false, message: 'No features found.' });
                 } else {
-                    res.json({ success: true, events: features });
+                    res.json({ success: true, features: features });
                 }
             }
         }).sort({ '_id': 1 });
+    });
+
+    /** UPDATE FEATURE **/
+    router.put('/updateFeature', (req, res) => {
+        if(!req.body._id) {
+            res.json({ success: false, message: 'No feature ID was provided' });
+        } else {
+            Feature.findOne({ _id: req.body._id }, (err, feature) => {
+                if(err) {
+                    res.json({ success: false, message: 'Not a valid feature ID' });
+                } else {
+                    if(!feature) {
+                        res.json({ success: false, message: 'Feature ID was not found' });
+                    } else {
+                        feature.name = req.body.name;
+                        feature.description = req.body.description;
+                        feature.type = req.body.type;
+                        feature.save((err) => {
+                            if(err) {
+                                if(err.errors) {
+                                    res.json({ success: false, message: 'Please ensure this form is filled out properly' });
+                                } else {
+                                    res.json({ success: false, message: err });
+                                }
+                            } else {
+                                res.json({ success: true, message: 'Feature has been updated' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
+    });
+
+    /** DELETE FEATURE **/
+    router.delete('/deleteFeature/:id', (req, res) => {
+        if(!req.params.id) {
+            res.json({ success: false, message: 'No ID provided' });
+        } else {
+            Feature.findOne({ _id: req.params.id }, (err, feature) => {
+                if(err) {
+                    res.json({ success: false, message: 'Invalid ID' });
+                } else {
+                    if(!feature) {
+                        res.json({ success: false, message: 'Feature was not found' });
+                    } else {
+                        feature.remove((err) => {
+                            if(err) {
+                                res.json({ success: false, message: err });
+                            } else {
+                                res.json({ success: true, message: 'Feature deleted' });
+                            }
+                        });
+                    }
+                }
+            });
+        }
     });
 
     return router;

@@ -2,15 +2,85 @@
 
 <div class="panel panel-primary" *ngFor="let feature of featurePosts">
   <div class="panel-heading">
-    <h3 class="panel-title">{{ feature.name }}</h3>
+    <h3 class="panel-title">{{ feature.name }}
+      <span *ngIf="!isAdmin">
+        <span class="label label-success labels" *ngIf="feature.type === 1">NEW</span>
+      </span>
+    </h3>
   </div>
-  <!--<div class="panel-body">-->
-    <!--<em>{{ event.date | date: 'MMM dd' }}</em><br>-->
-    <!--<p>{{ event.city }},&nbsp;{{ event.state }}</p>-->
-    <!--<a href="{{ event.url }}" target="_blank">Event Link</a>-->
-  <!--</div>-->
-  <!--<div class="panel-footer text-right" *ngIf="authService.loggedIn();">-->
-    <!--<button class="btn btn-warning" type="button" [routerLink]="['/edit-event', event._id]"><i class="fa fa-pencil" aria-hidden="true"></i></button>-->
-    <!--&lt;!&ndash;<button class="btn btn-danger" type="button" [routerLink]="['/delete-event/', event._id]">Delete Event</button>&ndash;&gt;-->
-  <!--</div>-->
+  <div class="panel-body">
+    <p>{{ feature.description }}</p>
+  </div>
+  <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
+    <button class="btn btn-warning" type="button"><i class="fa fa-pencil" aria-hidden="true"></i></button>
+  </div>
+</div>
+
+<!--FEATURE MODAL-->
+<div id="featureModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form  (submit)="onFeatureSubmit()" name="featureForm" [formGroup]="form">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Feature</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 show-hide-message" *ngIf="message">
+              <div [ngClass]="messageClass">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Feature Name</label>
+                <div [ngClass]="{'has-success': form.controls.name.valid, ' has-error': form.controls.name.dirty && form.controls.name.errors}">
+                  <input type="text" name="name" class="form-control" autocomplete="off" formControlName="name" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="description">Feature Description</label>
+                <div [ngClass]="{'has-success': form.controls.description.valid, ' has-error': form.controls.description.dirty && form.controls.description.errors}">
+                  <textarea type="text" name="description" class="form-control" autocomplete="off" formControlName="description" rows="5"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="type">Product Type</label>
+                <div [ngClass]="{'has-success': form.controls.type.valid, ' has-error': form.controls.type.dirty && form.controls.type.errors}">
+                  <select name="type" class="form-control" formControlName="type">
+                    <option value="">Select</option>
+                    <option value="1">Anywhere</option>
+                    <option value="2">Enterprise</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"><i class="fa fa-check web-icons" aria-hidden="true"></i>Save Feature</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelFeature">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
+  <div class="col-md-12" >
+    <button type="button" name="button" data-target="#featureModal" data-toggle="modal" class="btn btn-success btn-md">
+      <i class="fa fa-plus web-icons" aria-hidden="true"></i>New Feature
+    </button>
+  </div>
 </div>

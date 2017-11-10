@@ -11,88 +11,93 @@
   </div>
   <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
     <button class="btn btn-warning" type="button" [routerLink]="['/edit-event', event._id]"><i class="fa fa-pencil" aria-hidden="true"></i></button>
-    <!--<button class="btn btn-danger" type="button" [routerLink]="['/delete-event/', event._id]">Delete Event</button>-->
   </div>
 </div>
 
-<!--NEW EVENT FORM-->
-<div class="panel panel-info" *ngIf="newEvent">
-  <div class="panel-heading">New Event</div>
-  <div class="panel-body">
-    <!--Custom Success/Error Message-->
-    <div class="row">
-      <div class="col-md-12 show-hide-message" *ngIf="message && newEvent">
-        <div [ngClass]="messageClass">
-          {{ message }}
+
+<!--NEW EVENT MODAL-->
+<div id="newEventModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form  (submit)="onEventSubmit()" name="eventForm" [formGroup]="form">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New Event</h4>
         </div>
-      </div>
-    </div>
-    <form  (submit)="onEventSubmit()" name="eventForm" [formGroup]="form">
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-            <div class="form-group">
-              <label for="name">Event Name:</label>
-              <div [ngClass]="{'has-success': form.controls.name.valid, ' has-error': form.controls.name.dirty && form.controls.name.errors}">
-                <input type="text" name="name" class="form-control" autocomplete="off" formControlName="name" />
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 show-hide-message" *ngIf="message">
+              <div [ngClass]="messageClass">
+                {{ message }}
               </div>
             </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-offset-3 col-md-3">
-          <div class="form-group">
-            <label for="city">Event City</label>
-            <div [ngClass]="{'has-success': form.controls.city.valid, 'has-error': form.controls.city.dirty && form.controls.city.errors}">
-              <input type="text" name="city" class="form-control" autocomplete="off" formControlName="city"/>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Event Name:</label>
+                <div [ngClass]="{'has-success': form.controls.name.valid, ' has-error': form.controls.name.dirty && form.controls.name.errors}">
+                  <input type="text" name="name" class="form-control" autocomplete="off" formControlName="name" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="city">Event City</label>
+                <div [ngClass]="{'has-success': form.controls.city.valid, 'has-error': form.controls.city.dirty && form.controls.city.errors}">
+                  <input type="text" name="city" class="form-control" autocomplete="off" formControlName="city"/>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="state">Event State</label>
+                <div [ngClass]="{'has-success': form.controls.state.valid, 'has-error': form.controls.state.dirty && form.controls.state.errors}">
+                  <select name="state" class="form-control" formControlName="state">
+                    <option value="">Select</option>
+                    <option *ngFor="let state of states" value="{{ state.name }}">{{ state.name }}</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="date">Event Date</label>
+                <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
+                  <input type="date" name="date" class="form-control" autocomplete="off" formControlName="date"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="url">Event URL</label>
+                <div [ngClass]="{'has-success': form.controls.url.valid, 'has-error': form.controls.url.dirty && form.controls.url.errors}">
+                  <input type="text" name="url" class="form-control" autocomplete="off" formControlName="url"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div class="col-md-3">
-          <div class="form-group">
-            <label for="state">Event State</label>
-            <div [ngClass]="{'has-success': form.controls.state.valid, 'has-error': form.controls.state.dirty && form.controls.state.errors}">
-              <select name="state" class="form-control" formControlName="state">
-                <option value="">Select</option>
-                <option *ngFor="let state of states" value="{{ state.name }}">{{ state.name }}</option>
-              </select>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-offset-3 col-md-3">
-          <div class="form-group">
-            <label for="date">Event Date</label>
-            <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
-              <input type="date" name="date" class="form-control" autocomplete="off" formControlName="date"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-offset-3 col-md-6">
-          <div class="form-group">
-            <label for="url">Event URL</label>
-            <div [ngClass]="{'has-success': form.controls.url.valid, 'has-error': form.controls.url.dirty && form.controls.url.errors}">
-              <input type="text" name="url" class="form-control" autocomplete="off" formControlName="url"/>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="row ">
-        <div class="col-md-12 text-right">
+        <div class="modal-footer">
           <button class="btn btn-success"><i class="fa fa-check web-icons" aria-hidden="true"></i>Save Event</button>
-          <button class="btn btn-danger" (click)="cancelEventForm();"><i class="fa fa-times web-icons" aria-hidden="true" ></i>Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelNewEvent">Cancel</button>
         </div>
-      </div>
     </form>
+    </div>
   </div>
 </div>
 
 <div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
   <div class="col-md-12" >
-    <button type="button" name="button" class="btn btn-success btn-md" *ngIf="!newEvent" (click)="newEventForm()"><i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event</button>
+    <button type="button" name="button" data-target="#newEventModal" data-toggle="modal" class="btn btn-success btn-md">
+      <i class="fa fa-plus web-icons" aria-hidden="true"></i>New Event
+    </button>
   </div>
 </div>
 
-<!-- END NEW EVENT FORM-->

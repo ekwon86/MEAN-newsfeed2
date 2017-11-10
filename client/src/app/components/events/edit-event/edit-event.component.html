@@ -30,7 +30,7 @@
           <label for="state">Event State</label>
           <select [disabled]="processing" name="state" class="form-control" [(ngModel)]="event.state">
             <option value="">Select</option>
-            <option *ngFor="let state of states" value="{{ state.abbreviation }}">{{ state.name }}</option>
+            <option *ngFor="let state of states" value="{{ state.name }}">{{ state.name }}</option>
           </select>
         </div>
       </div>

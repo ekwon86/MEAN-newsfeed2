@@ -17,7 +17,13 @@ export class FeaturesComponent implements OnInit {
   form;
   processing = false;
   username;
-  featurePosts;
+  featurePosts = [];
+  isDevAdmin = false;
+  isDevUser = false;
+  isProdAdmin = false;
+  isProdUser = false;
+  isEnterprise = false;
+  isAdmin = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -40,8 +46,7 @@ export class FeaturesComponent implements OnInit {
       name: ['', Validators.compose([
         Validators.required,
         Validators.maxLength(50),
-        Validators.minLength(5),
-        this.alphaNumericWithSpacesValidation
+        Validators.minLength(5)
       ])],
       description: ['', Validators.compose([
         Validators.required
@@ -49,6 +54,39 @@ export class FeaturesComponent implements OnInit {
       type: ['', Validators.compose([
          Validators.required
       ])]
+    });
+  }
+
+  /** SUBMIT EVENT **/
+  onFeatureSubmit() {
+    this.processing = true;
+    this.disableFormNewFeatureForm();
+
+    const feature = {
+      name: this.form.get('name').value,
+      description: this.form.get('description').value,
+      type: this.form.get('type').value
+    };
+
+    this.featureService.newFeature(feature).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+        this.enableFormNewFeatureForm();
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.newFeature = false;
+          this.processing = false;
+          this.message = false;
+          this.form.reset();
+          this.enableFormNewFeatureForm();
+          this.getAllFeatures();
+          document.getElementById('cancelFeature').click();
+        }, 2000);
+      }
     });
   }
 
@@ -65,25 +103,46 @@ export class FeaturesComponent implements OnInit {
     this.form.get('type').disable();
   }
 
-  /** FORM VALIDATION **/
-  alphaNumericWithSpacesValidation(controls) {
-    const regExp = new RegExp(/^[a-z\d\-_\s]+$/i);
-    if(regExp.test(controls.value)) {
-      return null;
-    } else {
-      return { 'alphaNumericWithSpacesValidation': true };
-    }
-  }
 
   getAllFeatures() {
     this.featureService.getAllFeatures().subscribe(data => {
-      this.featurePosts = data.featuresl
-      console.log('Features: ' + this.featurePosts);
+      if(!this.isDevAdmin && !this.isDevUser && !this.isProdAdmin && !this.isProdUser && !this.isEnterprise) {
+        this.featurePosts = data.features;
+      } else {
+        for(let i = 0; i < data.features.length; i++) {
+          if(this.isDevAdmin && data.features[i].type === 1) {
+            this.featurePosts.push(data.features[i]);
+          } else if(this.isEnterprise && data.features[i].type === 2) {
+            this.featurePosts.push(data.features[i]);
+          }
+        }
+      }
     });
+  }
+
+  initialize() {
+    const str = window.location.href;
+    const tmp = str.lastIndexOf("/");
+    const result = str.substring(tmp + 1);
+
+    if(result === "dev-admin") {
+      this.isDevAdmin = true;
+    } else if (result === "dev-user") {
+      this.isDevUser = true;
+    } else if (result === "prod-admin") {
+      this.isProdAdmin = true;
+    } else if (result === "prod-user") {
+      this.isProdUser = true;
+    } else if (result === "enterprise") {
+      this.isEnterprise = true;
+    } else if (result === "") {
+      this.isAdmin = true;
+    }
   }
 
   ngOnInit() {
     this.getAllFeatures();
+    this.initialize();
   }
 
 }

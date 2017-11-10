@@ -301,6 +301,7 @@ export class EventsComponent implements OnInit {
           this.form.reset();
           this.enableFormNewEventForm();
           this.getAllEvents();
+          document.getElementById('cancelNewEvent').click();
         }, 2000);
       }
     });
