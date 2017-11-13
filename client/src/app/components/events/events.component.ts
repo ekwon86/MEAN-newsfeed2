@@ -10,11 +10,22 @@ import { EventService } from '../../services/event.service';
 })
 export class EventsComponent implements OnInit {
 
+  currentEvent = {
+    name: '',
+    city: '',
+    state: '',
+    date: '',
+    url: '',
+    _id: ''
+  };
   messageClass;
+  editMessageClass;
   message;
+  editMessage;
   newEvent = false;
   loadingEvents = false;
   form;
+  editForm;
   processing = false;
   username;
   eventPosts;
@@ -235,6 +246,7 @@ export class EventsComponent implements OnInit {
     private eventService: EventService
   ) {
     this.createNewEventForm();
+    this.createEditEventForm();
   }
 
   /** NEW EVENT / CANCEL EVENT BUTTONS **/
@@ -244,7 +256,6 @@ export class EventsComponent implements OnInit {
   cancelEventForm() {
     this.newEvent = false;
   }
-
 
   createNewEventForm() {
     this.form = this.formBuilder.group({
@@ -269,6 +280,35 @@ export class EventsComponent implements OnInit {
           Validators.required,
           this.urlValidation
         ])]
+    });
+  }
+
+  createEditEventForm() {
+    this.editForm = this.formBuilder.group({
+      name: ['', Validators.compose([
+        Validators.required,
+        Validators.maxLength(50),
+        Validators.minLength(5),
+        this.alphaNumericWithSpacesValidation
+      ])],
+      date: ['', Validators.compose([
+        Validators.required
+      ])],
+      city: ['', Validators.compose([
+        Validators.required,
+        this.alphaNumericWithSpacesValidation
+      ])],
+      state: ['', Validators.compose([
+        Validators.required,
+        this.alphaNumericWithSpacesValidation
+      ])],
+      url: ['', Validators.compose([
+        Validators.required,
+        this.urlValidation
+      ])],
+      id: ['', Validators.compose([
+        Validators.required
+      ])]
     });
   }
 
@@ -306,6 +346,49 @@ export class EventsComponent implements OnInit {
       }
     });
   }
+
+  /** UPDATE EVENT **/
+  updateEventSubmit() {
+    this.processing = true;
+
+    this.eventService.editEvent(this.currentEvent).subscribe(data => {
+      if(!data.success) {
+        this.editMessageClass = 'alert alert-danger';
+        this.editMessage = data.message;
+        this.processing = false;
+      } else {
+        this.editMessageClass = 'alert alert-success';
+        this.editMessage = data.message;
+        setTimeout(() => {
+          this.processing = false;
+          this.editMessage = false;
+          this.getAllEvents();
+          document.getElementById('cancelEditEvent').click();
+        }, 2000);
+      }
+    });
+  }
+
+  /** DELETE EVENT **/
+  deleteEvent() {
+    this.processing = true;
+    this.eventService.deleteEvent(this.currentEvent._id).subscribe(data => {
+        if(!data.success) {
+          this.messageClass = 'alert alert-danger';
+          this.message = data.message;
+        } else {
+          this.messageClass = 'alert alert-success';
+          this.message = data.message;
+          setTimeout(() => {
+            this.processing = false;
+            this.message = false;
+            this.getAllEvents();
+            document.getElementById('cancelDeleteEvent').click();
+          }, 2000);
+        }
+    });
+  }
+
 
   /** ENABLE/DISABLE FORM WHEN SUBMITTING **/
   enableFormNewEventForm() {
@@ -347,6 +430,17 @@ export class EventsComponent implements OnInit {
   getAllEvents() {
     this.eventService.getAllEvents().subscribe(data => {
         this.eventPosts = data.events;
+    });
+  }
+
+  getCurrentEvent(id) {
+    this.eventService.getSingleEvent(id).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = 'Event not found'
+      } else {
+        this.currentEvent = data.event;
+      }
     });
   }
 

@@ -12,6 +12,7 @@ const port = process.env.PORT || 8080;
 const authentication = require('./routes/authentication')(router);
 const events = require('./routes/event')(router);
 const features = require('./routes/feature')(router);
+const news = require('./routes/news')(router);
 
 /** DB Connection **/
 mongoose.connect(config.uri, (err) => {
@@ -36,6 +37,7 @@ app.use(express.static(__dirname + '/client/dist/')); // Provide static director
 app.use('/authentication', authentication);
 app.use('/events', events);
 app.use('/features', features);
+app.use('/news', news);
 
 // /** Connect server to Angular 2 index.html **/
 app.get('*', (req, res) => {

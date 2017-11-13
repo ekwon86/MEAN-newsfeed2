@@ -11,8 +11,6 @@ import { EventsComponent } from './components/events/events.component';
 import { HomeComponent } from './components/home/home.component';
 import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { EditEventComponent } from './components/events/edit-event/edit-event.component';
-import { DeleteEventComponent } from './components/events/delete-event/delete-event.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { EditFeatureComponent } from './components/features/edit-feature/edit-feature.component';
@@ -30,8 +28,6 @@ import { FeatureService } from './services/feature.service';
     HomeComponent,
     LoginComponent,
     NavbarComponent,
-    EditEventComponent,
-    DeleteEventComponent,
     RegisterComponent,
     FeaturesComponent,
     EditFeatureComponent,
