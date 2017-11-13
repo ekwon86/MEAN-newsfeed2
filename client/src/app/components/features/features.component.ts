@@ -10,6 +10,12 @@ import { FeatureService } from '../../services/feature.service';
 })
 export class FeaturesComponent implements OnInit {
 
+  currentFeature = {
+    name: '',
+    description: '',
+    type: '',
+    _id: ''
+  };
   messageClass;
   message;
   newFeature = false;
@@ -31,14 +37,6 @@ export class FeaturesComponent implements OnInit {
     private featureService: FeatureService
   ) {
     this.createNewFeatureForm();
-  }
-
-  /** NEW Feature / CANCEL Feature BUTTONS **/
-  newFeatureForm() {
-    this.newFeature = true;
-  }
-  cancelFeatureForm() {
-    this.newFeature = false;
   }
 
   createNewFeatureForm() {
@@ -84,11 +82,33 @@ export class FeaturesComponent implements OnInit {
           this.form.reset();
           this.enableFormNewFeatureForm();
           this.getAllFeatures();
-          document.getElementById('cancelFeature').click();
+          document.getElementById('cancelNewFeature').click();
         }, 2000);
       }
     });
   }
+
+  /** UPDATE FEATURE **/
+  updateFeatureSubmit() {
+    this.processing = true;
+    this.featureService.editFeature(this.currentFeature).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.processing = false;
+          this.message = false;
+          this.getAllFeatures();
+          document.getElementById('cancelEditFeature').click();
+        }, 2000);
+      }
+    });
+  }
+
 
   /** ENABLE/DISABLE FORM WHEN SUBMITTING **/
   enableFormNewFeatureForm() {
@@ -116,6 +136,37 @@ export class FeaturesComponent implements OnInit {
             this.featurePosts.push(data.features[i]);
           }
         }
+      }
+    });
+  }
+
+  /** DELETE FEATURE **/
+  deleteFeature() {
+    this.processing = true;
+    this.featureService.deleteFeature(this.currentFeature._id).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.processing = false;
+          this.message = false;
+          this.getAllFeatures();
+          document.getElementById('cancelDeleteFeature').click();
+        }, 2000);
+      }
+    });
+  }
+
+  getCurrentFeature(id) {
+    this.featureService.getSingleFeature(id).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = 'Feature not found'
+      } else {
+        this.currentFeature = data.feature;
       }
     });
   }

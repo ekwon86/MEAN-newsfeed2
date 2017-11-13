@@ -313,7 +313,6 @@ export class EventsComponent implements OnInit {
   /** UPDATE EVENT **/
   updateEventSubmit() {
     this.processing = true;
-
     this.eventService.editEvent(this.currentEvent).subscribe(data => {
       if(!data.success) {
         this.editMessageClass = 'alert alert-danger';

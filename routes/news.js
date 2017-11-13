@@ -102,6 +102,25 @@ module.exports = (router) => {
         }
     });
 
+    /** GET SINGLE NEWS ARTICLE **/
+    router.get('/singleNews/:id', (req, res) => {
+        if(!req.params.id) {
+            res.json({ success: false, message: 'No news ID was provided' });
+        } else {
+            News.findOne({ _id: req.params.id }, (err, news) => {
+                if(err) {
+                    res.json({ success: false, message: 'Not a valid news ID' });
+                } else {
+                    if(!news) {
+                        res.json({ success: false, message: 'News Article not found' });
+                    } else {
+                        res.json({ success: true, news: news });
+                    }
+                }
+            });
+        }
+    });
+
     /** DELETE NEWS ARTICLE **/
     router.delete('/deleteNews/:id', (req, res) => {
         if(!req.params.id) {

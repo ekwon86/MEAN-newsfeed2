@@ -56,4 +56,5 @@ export class NewsService {
     return this.http.delete(this.domain + 'news/deleteNews/' + id, this.options).map(res => res.json());
   }
 
+
 }

@@ -103,7 +103,28 @@ export class NewsComponent implements OnInit {
     });
   }
 
-  /** DELETE EVENT **/
+  /** UPDATE NEWS **/
+  updateNewsSubmit() {
+    this.processing = true;
+    this.newsService.editNews(this.currentNews).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+        this.processing = false;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.processing = false;
+          this.message = false;
+          this.getAllNews();
+          document.getElementById('cancelEditNews').click();
+        }, 2000);
+      }
+    });
+  }
+
+  /** DELETE NEWS **/
   deleteNews() {
     this.processing = true;
     this.newsService.deleteNews(this.currentNews._id).subscribe(data => {
@@ -137,6 +158,19 @@ export class NewsComponent implements OnInit {
   getAllNews() {
     this.newsService.getAllNews().subscribe(data => {
       this.newsPosts = data.news;
+    });
+  }
+
+
+  /** GET CURRENT NEWS **/
+  getCurrentNews(id) {
+    this.newsService.getSingleNews(id).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = 'News article not found'
+      } else {
+        this.currentNews = data.news;
+      }
     });
   }
 
