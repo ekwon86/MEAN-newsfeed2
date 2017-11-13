@@ -10,6 +10,13 @@ import { NewsService } from '../../services/news.service';
 })
 export class NewsComponent implements OnInit {
 
+  currentNews = {
+    title: '',
+    date: '',
+    snippet: '',
+    url: '',
+    _id: ''
+  };
   message;
   messageClass;
   newNews = false;
@@ -67,14 +74,14 @@ export class NewsComponent implements OnInit {
     this.processing = true;
     this.disableFormNewNewsForm();
 
-    const event = {
+    const news = {
       title: this.form.get('title').value,
       date: this.form.get('date').value,
       snippet: this.form.get('snippet').value,
       url: this.form.get('url').value
     };
 
-    this.newsService.newEvent(event).subscribe(data => {
+    this.newsService.newNews(news).subscribe(data => {
       if(!data.success) {
         this.messageClass = 'alert alert-danger';
         this.message = data.message;
@@ -89,8 +96,28 @@ export class NewsComponent implements OnInit {
           this.message = false;
           this.form.reset();
           this.enableFormNewNewsForm();
-          this.getAllEvents();
+          this.getAllNews();
           document.getElementById('cancelNewNews').click();
+        }, 2000);
+      }
+    });
+  }
+
+  /** DELETE EVENT **/
+  deleteNews() {
+    this.processing = true;
+    this.newsService.deleteNews(this.currentNews._id).subscribe(data => {
+      if(!data.success) {
+        this.messageClass = 'alert alert-danger';
+        this.message = data.message;
+      } else {
+        this.messageClass = 'alert alert-success';
+        this.message = data.message;
+        setTimeout(() => {
+          this.processing = false;
+          this.message = false;
+          this.getAllNews();
+          document.getElementById('cancelDeleteNews').click();
         }, 2000);
       }
     });
@@ -107,14 +134,14 @@ export class NewsComponent implements OnInit {
   }
 
   /** GET NEWS ARTICLES **/
-  getAllEvents() {
+  getAllNews() {
     this.newsService.getAllNews().subscribe(data => {
       this.newsPosts = data.news;
     });
   }
 
   ngOnInit() {
-    this.getAllEvents();
+    this.getAllNews();
   }
 
 }

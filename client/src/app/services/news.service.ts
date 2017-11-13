@@ -39,19 +39,19 @@ export class NewsService {
   }
 
   // Function to create a new news article
-  newEvent(event) {
+  newNews(news) {
     this.createAuthenticationHeaders();
-    return this.http.post(this.domain + 'news/newNews', event, this.options).map(res => res.json());
+    return this.http.post(this.domain + 'news/newNews', news, this.options).map(res => res.json());
   }
 
   // Function to edit news article
-  editEvent(event) {
+  editNews(news) {
     this.createAuthenticationHeaders();
-    return this.http.put(this.domain + 'news/updateNews', event, this.options).map(res => res.json());
+    return this.http.put(this.domain + 'news/updateNews', news, this.options).map(res => res.json());
   }
 
   // Function to delete news article
-  deleteEvent(id) {
+  deleteNews(id) {
     this.createAuthenticationHeaders();
     return this.http.delete(this.domain + 'news/deleteNews/' + id, this.options).map(res => res.json());
   }

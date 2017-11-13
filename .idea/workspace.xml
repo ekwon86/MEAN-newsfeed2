@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c837e877-03e5-4b4a-9970-ee08034459ec" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/delete-feature/delete-feature.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/delete-feature/delete-feature.component.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/delete-feature/delete-feature.component.spec.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/delete-feature/delete-feature.component.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/edit-feature/edit-feature.component.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/edit-feature/edit-feature.component.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/edit-feature/edit-feature.component.spec.ts" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/client/src/app/components/features/edit-feature/edit-feature.component.ts" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/app.module.ts" afterPath="$PROJECT_DIR$/client/src/app/app.module.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/events/events.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/events/events.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/events/events.component.ts" afterPath="$PROJECT_DIR$/client/src/app/components/events/events.component.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/home/home.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/home/home.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/news.js" afterPath="$PROJECT_DIR$/models/news.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/news/news.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/news/news.component.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/news/news.component.ts" afterPath="$PROJECT_DIR$/client/src/app/components/news/news.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/services/news.service.ts" afterPath="$PROJECT_DIR$/client/src/app/services/news.service.ts" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -32,11 +22,11 @@
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
-          <file leaf-file-name="events.component.ts" pinned="false" current-in-tab="false">
+          <file leaf-file-name="events.component.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="255">
-                  <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="9" />
+                <state relative-caret-position="204">
+                  <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="19" selection-end-column="4" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
@@ -44,11 +34,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="events.component.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="events.component.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="2312">
-                  <caret line="124" column="48" lean-forward="true" selection-start-line="124" selection-start-column="48" selection-end-line="124" selection-end-column="48" />
+                <state relative-caret-position="93">
+                  <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="114" selection-end-column="6" />
                   <folding />
                 </state>
               </provider>
@@ -58,11 +48,23 @@
       </split-first>
       <split-second>
         <leaf>
-          <file leaf-file-name="news.component.ts" pinned="false" current-in-tab="false">
+          <file leaf-file-name="news.service.ts" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/client/src/app/services/news.service.ts">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="357">
+                  <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
+                  <folding>
+                    <element signature="e#0#43#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="news.component.ts" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/client/src/app/components/news/news.component.ts">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="640">
-                  <caret line="92" column="48" lean-forward="false" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
+                <state relative-caret-position="459">
+                  <caret line="103" column="3" lean-forward="true" selection-start-line="103" selection-start-column="3" selection-end-line="103" selection-end-column="3" />
                   <folding>
                     <element signature="e#0#50#0" expanded="true" />
                   </folding>
@@ -70,11 +72,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="news.component.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="news.component.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/client/src/app/components/news/news.component.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="204">
-                  <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
+                <state relative-caret-position="459">
+                  <caret line="109" column="95" lean-forward="false" selection-start-line="109" selection-start-column="79" selection-end-line="109" selection-end-column="95" />
                   <folding />
                 </state>
               </provider>
@@ -86,7 +88,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>featuremodal</find>
       <find>select</find>
       <find>edit</find>
       <find>eventmodal</find>
@@ -109,13 +110,14 @@
       <find>delete</find>
       <find>updateevet</find>
       <find>deleteevent</find>
-      <find>event</find>
       <find>constru</find>
       <find>getsingle</find>
       <find>urlvalida</find>
       <find>neweventmodal</find>
       <find>getallNews</find>
       <find>neweven</find>
+      <find>delete modal</find>
+      <find>event</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -164,11 +166,11 @@
         <option value="$PROJECT_DIR$/models/news.js" />
         <option value="$PROJECT_DIR$/client/src/app/components/home/home.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/app.module.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/services/news.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/events/events.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/events/events.component.html" />
-        <option value="$PROJECT_DIR$/client/src/app/components/news/news.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/news/news.component.html" />
+        <option value="$PROJECT_DIR$/client/src/app/services/news.service.ts" />
+        <option value="$PROJECT_DIR$/client/src/app/components/news/news.component.ts" />
       </list>
     </option>
   </component>
@@ -533,12 +535,12 @@
       <workItem from="1510339552320" duration="1227000" />
       <workItem from="1510585561444" duration="54000" />
       <workItem from="1510589266230" duration="4996000" />
-      <workItem from="1510594996001" duration="3587000" />
+      <workItem from="1510594996001" duration="3985000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71372000" />
+    <option name="totallyTimeSpent" value="71770000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -885,49 +887,49 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="93">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="114" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="0" lean-forward="true" selection-start-line="12" selection-start-column="0" selection-end-line="19" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/src/app/components/news/news.component.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="459">
+          <caret line="109" column="95" lean-forward="false" selection-start-line="109" selection-start-column="79" selection-end-line="109" selection-end-column="95" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/services/news.service.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="425">
-          <caret line="25" column="3" lean-forward="true" selection-start-line="25" selection-start-column="3" selection-end-line="25" selection-end-column="3" />
+        <state relative-caret-position="357">
+          <caret line="43" column="82" lean-forward="false" selection-start-line="43" selection-start-column="82" selection-end-line="43" selection-end-column="82" />
           <folding>
             <element signature="e#0#43#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="24" column="9" lean-forward="false" selection-start-line="24" selection-start-column="2" selection-end-line="24" selection-end-column="9" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/components/news/news.component.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="640">
-          <caret line="92" column="48" lean-forward="false" selection-start-line="92" selection-start-column="48" selection-end-line="92" selection-end-column="48" />
+        <state relative-caret-position="459">
+          <caret line="103" column="3" lean-forward="true" selection-start-line="103" selection-start-column="3" selection-end-line="103" selection-end-column="3" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/events/events.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2312">
-          <caret line="124" column="48" lean-forward="true" selection-start-line="124" selection-start-column="48" selection-end-line="124" selection-end-column="48" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/client/src/app/components/news/news.component.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="12" column="7" lean-forward="true" selection-start-line="12" selection-start-column="7" selection-end-line="12" selection-end-column="7" />
-          <folding />
         </state>
       </provider>
     </entry>
