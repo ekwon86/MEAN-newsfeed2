@@ -246,17 +246,9 @@ export class EventsComponent implements OnInit {
     private eventService: EventService
   ) {
     this.createNewEventForm();
-    this.createEditEventForm();
   }
 
-  /** NEW EVENT / CANCEL EVENT BUTTONS **/
-  newEventForm() {
-    this.newEvent = true;
-  }
-  cancelEventForm() {
-    this.newEvent = false;
-  }
-
+  /** CREATE FORM **/
   createNewEventForm() {
     this.form = this.formBuilder.group({
         name: ['', Validators.compose([
@@ -280,35 +272,6 @@ export class EventsComponent implements OnInit {
           Validators.required,
           this.urlValidation
         ])]
-    });
-  }
-
-  createEditEventForm() {
-    this.editForm = this.formBuilder.group({
-      name: ['', Validators.compose([
-        Validators.required,
-        Validators.maxLength(50),
-        Validators.minLength(5),
-        this.alphaNumericWithSpacesValidation
-      ])],
-      date: ['', Validators.compose([
-        Validators.required
-      ])],
-      city: ['', Validators.compose([
-        Validators.required,
-        this.alphaNumericWithSpacesValidation
-      ])],
-      state: ['', Validators.compose([
-        Validators.required,
-        this.alphaNumericWithSpacesValidation
-      ])],
-      url: ['', Validators.compose([
-        Validators.required,
-        this.urlValidation
-      ])],
-      id: ['', Validators.compose([
-        Validators.required
-      ])]
     });
   }
 

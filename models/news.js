@@ -19,7 +19,7 @@ let snippetLengthChecker = (snippet) => {
 const snippetValidators = [
     {
         validator: snippetLengthChecker,
-        message: 'Snippet must be at least 25 characters but ni more than 300'
+        message: 'Snippet must be at least 25 characters but no more than 300'
     }
 ];
 

@@ -13,13 +13,12 @@ import { LoginComponent } from './components/login/login.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FeaturesComponent } from './components/features/features.component';
-import { EditFeatureComponent } from './components/features/edit-feature/edit-feature.component';
-import { DeleteFeatureComponent } from './components/features/delete-feature/delete-feature.component';
+import { NewsComponent } from './components/news/news.component';
 
 import { AuthService } from './services/auth.service';
 import { EventService } from './services/event.service';
 import { FeatureService } from './services/feature.service';
-
+import { NewsService } from './services/news.service';
 
 @NgModule({
   declarations: [
@@ -30,8 +29,7 @@ import { FeatureService } from './services/feature.service';
     NavbarComponent,
     RegisterComponent,
     FeaturesComponent,
-    EditFeatureComponent,
-    DeleteFeatureComponent
+    NewsComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +42,8 @@ import { FeatureService } from './services/feature.service';
   providers: [
     AuthService,
     EventService,
-    FeatureService
+    FeatureService,
+    NewsService
   ],
   bootstrap: [AppComponent]
 })

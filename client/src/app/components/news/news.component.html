@@ -1,0 +1,97 @@
+<h1 class="page-header">In The News</h1>
+
+<div class="panel panel-primary" *ngFor="let news of newsPosts">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ news.title }}</h3>
+  </div>
+  <div class="panel-body">
+    <em>{{ news.date | date: 'MMMM dd, yyyy' }}</em><br>
+    <p>{{ news.snippet }}</p>
+    <a href="{{ news.url}}" target="_blank">READ MORE</a>
+  </div>
+  <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
+    <!--<button class="btn btn-danger" type="button" data-target="#deleteEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">-->
+      <!--<i class="fa fa-trash" aria-hidden="true"></i>-->
+    <!--</button>-->
+    <!--<button class="btn btn-warning" type="button" data-target="#editEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">-->
+      <!--<i class="fa fa-pencil" aria-hidden="true"></i>-->
+    <!--</button>-->
+  </div>
+</div>
+
+
+<!--NEW EVENT MODAL-->
+<div id="newNewsModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form  (submit)="onNewsSubmit()" name="eventForm" [formGroup]="form">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">New News Article</h4>
+        </div>
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-md-12 show-hide-message" *ngIf="message">
+              <div [ngClass]="messageClass">
+                {{ message }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="name">Article Title:</label>
+                <div [ngClass]="{'has-success': form.controls.title.valid, ' has-error': form.controls.title.dirty && form.controls.title.errors}">
+                  <input type="text" name="title" class="form-control" autocomplete="off" formControlName="title" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="date">Article Date</label>
+                <div [ngClass]="{'has-success': form.controls.date.valid, 'has-error': form.controls.date.dirty && form.controls.date.errors}">
+                  <input type="date" name="date" class="form-control" autocomplete="off" formControlName="date"/>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="snippet">Snippet From Article</label>
+                <div [ngClass]="{'has-success': form.controls.snippet.valid, 'has-error': form.controls.snippet.dirty && form.controls.snippet.errors}">
+                  <textarea type="date" name="snippet" class="form-control" autocomplete="off" formControlName="snippet" rows="10"></textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="url">Article URL</label>
+                <div [ngClass]="{'has-success': form.controls.url.valid, 'has-error': form.controls.url.dirty && form.controls.url.errors}">
+                  <input type="text" name="url" class="form-control" autocomplete="off" formControlName="url"/>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-success"><i class="fa fa-check web-icons" aria-hidden="true"></i>Save News ARticle</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal" id="cancelNewNews">Cancel</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
+  <div class="col-md-12" >
+    <button type="button" name="button" data-target="#newNewsModal" data-toggle="modal" class="btn btn-success btn-md">
+      <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add News Article
+    </button>
+  </div>
+</div>
