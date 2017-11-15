@@ -1,0 +1,14 @@
+<h1 class="page-header">Form Updates</h1>
+
+<div class="form-update-section">
+  <div id="form-update-container">
+    <div *ngFor="let company of formUpdates" class="form-update-row">
+      <div class="form-update-row-content">
+        <img class="form-bullet" src="../../../assets/formbullet.png" alt="formbullet">
+        <span class="company-name">{{ company.company || company.companies }} </span>
+        <span *ngIf="company.type === 'NEW'" class="label label-danger label-as-badge">NEW</span>
+        <span *ngIf="company.type === 'ESIGN'" class="label label-info label-as-badge">ESIGN</span>
+      </div>
+    </div>
+  </div>
+</div>

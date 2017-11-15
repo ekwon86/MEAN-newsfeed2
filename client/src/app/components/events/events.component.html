@@ -1,7 +1,8 @@
 <h1 class="page-header">Industry Events</h1>
 
-<div *ngFor="let event of eventPosts" class="event-container">
-  <div class="event-containers">
+<div class="event-section">
+  <div *ngFor="let event of eventPosts" class="event-container">
+    <div class="event-containers">
       <div class="date-container">
         <div class="date-subcontainer">
           <p class="date">{{ event.date | date: 'dd'}}</p>
@@ -24,8 +25,17 @@
           </button>
         </div>
       </div>
+    </div>
+  </div>
+  <div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
+    <div class="col-md-12" >
+      <button type="button" name="button" data-target="#newEventModal" data-toggle="modal" class="btn btn-success btn-md">
+        <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Event
+      </button>
+    </div>
   </div>
 </div>
+
 
 <!--EDIT EVENT MODAL-->
 <div id="editEventModal" class="modal fade" role="dialog">
@@ -197,14 +207,6 @@
         </div>
     </form>
     </div>
-  </div>
-</div>
-
-<div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
-  <div class="col-md-12" >
-    <button type="button" name="button" data-target="#newEventModal" data-toggle="modal" class="btn btn-success btn-md">
-      <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Event
-    </button>
   </div>
 </div>
 

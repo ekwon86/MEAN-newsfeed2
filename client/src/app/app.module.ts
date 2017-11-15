@@ -14,6 +14,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FeaturesComponent } from './components/features/features.component';
 import { NewsComponent } from './components/news/news.component';
+import { FormupdatesComponent } from './components/formupdates/formupdates.component';
+
 
 import { AuthService } from './services/auth.service';
 import { EventService } from './services/event.service';
@@ -29,7 +31,8 @@ import { NewsService } from './services/news.service';
     NavbarComponent,
     RegisterComponent,
     FeaturesComponent,
-    NewsComponent
+    NewsComponent,
+    FormupdatesComponent
   ],
   imports: [
     BrowserModule,
