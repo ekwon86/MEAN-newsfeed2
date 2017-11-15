@@ -81,13 +81,13 @@ module.exports = (router) => {
                                                 if(err.errors.snippet) {
                                                     res.json({ success: false, message: err.errors.snippet.message });
                                                 } else {
-                                                    if(err.errors.img) {
-                                                        res.json({ success: false, message: err.errors.img.message });
-                                                    } else {
+                                                    // if(err.errors.img) {
+                                                    //     res.json({ success: false, message: err.errors.img.message });
+                                                    // } else {
                                                         if(err.errors.url) {
                                                             res.json({ success: false, message: err.errors.url.message });
                                                         }
-                                                    }
+                                                    // }
                                                 }
                                             }
                                         }
