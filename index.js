@@ -45,6 +45,6 @@ app.get('*', (req, res) => {
 });
 
 /** Start Server: listen on port 8080 **/
-app.listen(port, () => {
+app.listen(process.env.PORT || 8080, () => {
     console.log('Listening on port ' + port);
 });
