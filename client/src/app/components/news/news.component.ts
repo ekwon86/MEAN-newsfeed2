@@ -177,5 +177,4 @@ export class NewsComponent implements OnInit {
   ngOnInit() {
     this.getAllNews();
   }
-
 }

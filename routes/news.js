@@ -1,7 +1,50 @@
 const News = require('../models/news');
 const config = require('../config/database');
+const multer = require('multer');
+const path = require('path');
+
+let storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+    }
+});
+
+let upload = multer({
+    storage: storage,
+    limits: { fileSize: 100000 },
+    fileFilter: function(req, file, cb) {
+        checkFileType(file, cb);
+    }
+}).single('newsImage');
+
+function checkFileType(file, cb) {
+    // Allowed ext
+    const filetypes = /jpeg|jpg|png|gif/;
+    // Check ext
+    const extname = filetypes.test(path.extname(file.originalname).toLowerCase());
+    // Check mime
+    const mimetype = filetypes.test(file.mimetype);
+
+    if(mimetype && extname){
+        return cb(null,true);
+    } else {
+        cb('Error: Images Only!');
+    }
+}
 
 module.exports = (router) => {
+    router.post('/newsImage', (req, res) => {
+        upload(req, res, (err) => {
+            if(err) {
+                res.json({ success: false, message: 'There was an error uploading the image' });
+            } else {
+                res.json({ success: true, message: 'Image uploaded' });
+            }
+        });
+    });
     /** CREATE NEW NEWS ARTICLE ROUTE **/
     router.post('/newNews', (req, res) => {
         if(!req.body.title) {
@@ -13,41 +56,49 @@ module.exports = (router) => {
                 if(!req.body.snippet) {
                     res.json({ success: false, message: 'Snippet is required' });
                 } else {
-                    if(!req.body.url) {
-                        res.json({ success: false, message: 'News URL is required' });
+                    if(!req.body.img) {
+                        res.json({ success: false, message: 'Image name is required' });
                     } else {
-                        const news = new News({
-                            title: req.body.title,
-                            date: req.body.date,
-                            snippet: req.body.snippet,
-                            url: req.body.url
-                        });
-
-                        news.save((err) => {
-                            if(err) {
-                                if(err.errors) {
-                                    if(err.errors.name) {
-                                        res.json({ success: false, message: err.errors.title.message });
-                                    } else {
-                                        if(err.errors.date) {
-                                            res.json({ success: false, message: err.errors.date.message });
+                        if(!req.body.url) {
+                            res.json({ success: false, message: 'News URL is required' });
+                        } else {
+                            const news = new News({
+                                title: req.body.title,
+                                date: req.body.date,
+                                snippet: req.body.snippet,
+                                img: req.body.img,
+                                url: req.body.url
+                            });
+                            news.save((err) => {
+                                if(err) {
+                                    if(err.errors) {
+                                        if(err.errors.name) {
+                                            res.json({ success: false, message: err.errors.title.message });
                                         } else {
-                                            if(err.errors.snippet) {
-                                                res.json({ success: false, message: err.errors.snippet.message });
+                                            if(err.errors.date) {
+                                                res.json({ success: false, message: err.errors.date.message });
                                             } else {
-                                                if(err.errors.url) {
-                                                    res.json({ success: false, message: err.errors.url.message });
+                                                if(err.errors.snippet) {
+                                                    res.json({ success: false, message: err.errors.snippet.message });
+                                                } else {
+                                                    if(err.errors.img) {
+                                                        res.json({ success: false, message: err.errors.img.message });
+                                                    } else {
+                                                        if(err.errors.url) {
+                                                            res.json({ success: false, message: err.errors.url.message });
+                                                        }
+                                                    }
                                                 }
                                             }
                                         }
+                                    } else {
+                                        res.json({ success: false, message: err });
                                     }
                                 } else {
-                                    res.json({ success: false, message: err });
+                                    res.json({ success: true, message: 'News article saved!' });
                                 }
-                            } else {
-                                res.json({ success: true, message: 'News article saved!' });
-                            }
-                        });
+                            });
+                        }
                     }
                 }
             }

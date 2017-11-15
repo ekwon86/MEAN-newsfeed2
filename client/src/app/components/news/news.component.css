@@ -1,0 +1,44 @@
+.news-container {
+  min-height: 150px;
+  height: auto;
+  width: 100%;
+  position: relative;
+  border-top:2px solid rgb(54, 190, 235);
+  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);
+  padding: 12px;
+  margin-bottom: 10px;
+}
+
+.news-container div {
+  vertical-align: top;
+}
+
+.news-img-container {
+  min-height: inherit;
+  width: 20%;
+  border: 1px solid rgba(0,0,0,0.05);
+  background-image: url('../../../assets/5megatrends.jpg');
+  background-size: cover;
+  background-position: center;
+  display: inline-block;
+}
+
+.news-info-container {
+  min-height: inherit;
+  padding-left: 15px;
+  width: 79%;
+  display: inline-block;
+}
+
+.news-article-title {
+  font-size: 2em;
+  margin: 0;
+}
+
+.news-article-date {
+  margin-bottom: 5px;
+}
+
+.news-article-snippet {
+  text-align: justify;
+}

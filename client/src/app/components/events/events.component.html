@@ -1,24 +1,31 @@
-<h1 class="page-header">Events</h1>
+<h1 class="page-header">Industry Events</h1>
 
-<div class="panel panel-primary" *ngFor="let event of eventPosts">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{ event.name }}</h3>
-  </div>
-  <div class="panel-body">
-    <em>{{ event.date | date: 'MMM dd' }}</em><br>
-    <p>{{ event.city }},&nbsp;{{ event.state }}</p>
-    <a href="{{ event.url }}" target="_blank">Event Link</a>
-  </div>
-  <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
-    <button class="btn btn-danger" type="button" data-target="#deleteEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
-      <i class="fa fa-trash" aria-hidden="true"></i>
-    </button>
-    <button class="btn btn-warning" type="button" data-target="#editEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
-      <i class="fa fa-pencil" aria-hidden="true"></i>
-    </button>
+<div *ngFor="let event of eventPosts" class="event-container">
+  <div class="event-containers">
+      <div class="date-container">
+        <div class="date-subcontainer">
+          <p class="date">{{ event.date | date: 'dd'}}</p>
+          <p class="month">{{ event.date | date: 'MMM'}}</p>
+        </div>
+      </div>
+      <div class="event-info-container">
+        <div class="event-info-subcontainer">
+          <a href="{{ event.url }}" class="event-link" target="_blank">
+            <p class="event-name">{{ event.name }}</p>
+            <p class="event-location">{{ event.city }},&nbsp;{{ event.state }}</p>
+          </a>
+        </div>
+        <div class="edit-event-container text-right" *ngIf="authService.loggedIn();">
+          <button class="btn btn-danger" type="button" data-target="#deleteEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
+            <i class="fa fa-trash" aria-hidden="true"></i>
+          </button>
+          <button class="btn btn-warning" type="button" data-target="#editEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
+            <i class="fa fa-pencil" aria-hidden="true"></i>
+          </button>
+        </div>
+      </div>
   </div>
 </div>
-
 
 <!--EDIT EVENT MODAL-->
 <div id="editEventModal" class="modal fade" role="dialog">
@@ -93,7 +100,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button [disabled]="processing" type="button" class="close" data-dismiss="modal">&times;</button>
         <h4 class="modal-title">Delete Event</h4>
       </div>
       <div class="modal-body">

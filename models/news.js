@@ -41,7 +41,6 @@ const urlValidators = [
 ];
 
 
-
 const newsSchema = new Schema({
     title: {
         type: String,
@@ -57,8 +56,8 @@ const newsSchema = new Schema({
         validate: snippetValidators
     },
     img: {
-        type: Buffer,
-        required: true
+        type: String,
+        required: true,
     },
     url: {
         type: String,

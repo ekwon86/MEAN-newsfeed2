@@ -1,0 +1,88 @@
+.event-container {
+  height: 135px;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.edit-event-container {
+  position: absolute;
+  top: 0;
+  padding: 10px;
+  right: 0;
+  height: 55px;
+  width: 102px;
+  z-index: 999;
+}
+
+.event-containers {
+  height: 100%;
+  border: 1px solid rgba(0,0,0,0.1);
+}
+
+
+.event-subcontainer {
+  height: 100%;
+  border: 1px solid black;
+}
+
+.event-containers p {
+  margin: 0;
+}
+
+.month, .date {
+  color: #ffffff;
+}
+
+.date {
+  font-size: 3em;
+}
+.month {
+  font-size: 1.5em;
+  text-transform: uppercase;
+}
+
+.date-container {
+  width: 25%;
+  height: 100%;
+  background-color: #36beeb;
+  float: left;
+  text-align: center;
+}
+
+.event-info-container {
+  width: 75%;
+  height: 100%;
+  background-color: #fff;
+  border-left: 1px solid rgba(0,0,0,0.1);
+  float: right;
+  padding: 15px;
+}
+
+.event-name {
+  font-size: 2.75em;
+}
+
+.event-location {
+  font-size: 1.5em;
+}
+
+.event-info-subcontainer, .date-subcontainer {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.admin-btn-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.event-link {
+  color: #000;
+  transition: 0.2s;
+}
+.event-link:hover {
+  text-decoration: none;
+  color: #36beeb;
+}
