@@ -56,9 +56,9 @@ module.exports = (router) => {
                 if(!req.body.snippet) {
                     res.json({ success: false, message: 'Snippet is required' });
                 } else {
-                    if(!req.body.img) {
-                        res.json({ success: false, message: 'Image name is required' });
-                    } else {
+                    // if(!req.body.img) {
+                    //     res.json({ success: false, message: 'Image name is required' });
+                    // } else {
                         if(!req.body.url) {
                             res.json({ success: false, message: 'News URL is required' });
                         } else {
@@ -99,7 +99,7 @@ module.exports = (router) => {
                                 }
                             });
                         }
-                    }
+                    // }
                 }
             }
         }
