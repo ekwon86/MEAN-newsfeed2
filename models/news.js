@@ -55,10 +55,6 @@ const newsSchema = new Schema({
         required: true,
         validate: snippetValidators
     },
-    img: {
-        type: String,
-        required: true,
-    },
     url: {
         type: String,
         required: true,

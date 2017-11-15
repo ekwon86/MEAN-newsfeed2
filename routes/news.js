@@ -56,50 +56,41 @@ module.exports = (router) => {
                 if(!req.body.snippet) {
                     res.json({ success: false, message: 'Snippet is required' });
                 } else {
-                    // if(!req.body.img) {
-                    //     res.json({ success: false, message: 'Image name is required' });
-                    // } else {
-                        if(!req.body.url) {
-                            res.json({ success: false, message: 'News URL is required' });
-                        } else {
-                            const news = new News({
-                                title: req.body.title,
-                                date: req.body.date,
-                                snippet: req.body.snippet,
-                                img: req.body.img,
-                                url: req.body.url
-                            });
-                            news.save((err) => {
-                                if(err) {
-                                    if(err.errors) {
-                                        if(err.errors.name) {
-                                            res.json({ success: false, message: err.errors.title.message });
+                    if(!req.body.url) {
+                        res.json({ success: false, message: 'News URL is required' });
+                    } else {
+                        const news = new News({
+                            title: req.body.title,
+                            date: req.body.date,
+                            snippet: req.body.snippet,
+                            url: req.body.url
+                        });
+                        news.save((err) => {
+                            if(err) {
+                                if(err.errors) {
+                                    if(err.errors.name) {
+                                        res.json({ success: false, message: err.errors.title.message });
+                                    } else {
+                                        if(err.errors.date) {
+                                            res.json({ success: false, message: err.errors.date.message });
                                         } else {
-                                            if(err.errors.date) {
-                                                res.json({ success: false, message: err.errors.date.message });
+                                            if(err.errors.snippet) {
+                                                res.json({ success: false, message: err.errors.snippet.message });
                                             } else {
-                                                if(err.errors.snippet) {
-                                                    res.json({ success: false, message: err.errors.snippet.message });
-                                                } else {
-                                                    // if(err.errors.img) {
-                                                    //     res.json({ success: false, message: err.errors.img.message });
-                                                    // } else {
-                                                        if(err.errors.url) {
-                                                            res.json({ success: false, message: err.errors.url.message });
-                                                        }
-                                                    // }
+                                                if(err.errors.url) {
+                                                    res.json({ success: false, message: err.errors.url.message });
                                                 }
                                             }
                                         }
-                                    } else {
-                                        res.json({ success: false, message: err });
                                     }
                                 } else {
-                                    res.json({ success: true, message: 'News article saved!' });
+                                    res.json({ success: false, message: err });
                                 }
-                            });
-                        }
-                    // }
+                            } else {
+                                res.json({ success: true, message: 'News article saved!' });
+                            }
+                        });
+                    }
                 }
             }
         }
