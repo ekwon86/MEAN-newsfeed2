@@ -1,38 +1,36 @@
 <h1 class="page-header">Industry Events</h1>
 
-<div class="event-section">
-  <div *ngFor="let event of eventPosts" class="event-container">
-    <div class="event-containers">
-      <div class="date-container">
-        <div class="date-subcontainer">
-          <p class="date">{{ event.date | date: 'dd'}}</p>
-          <p class="month">{{ event.date | date: 'MMM'}}</p>
-        </div>
+<div *ngFor="let event of eventPosts" class="event-container">
+  <div class="event-containers">
+    <div class="date-container">
+      <div class="date-subcontainer">
+        <p class="date">{{ event.date | date: 'dd'}}</p>
+        <p class="month">{{ event.date | date: 'MMM'}}</p>
       </div>
-      <div class="event-info-container">
-        <div class="event-info-subcontainer">
-          <a href="{{ event.url }}" class="event-link" target="_blank">
-            <p class="event-name">{{ event.name }}</p>
-            <p class="event-location">{{ event.city }},&nbsp;{{ event.state }}</p>
-          </a>
-        </div>
-        <div class="edit-event-container text-right" *ngIf="authService.loggedIn();">
-          <button class="btn btn-danger" type="button" data-target="#deleteEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
-            <i class="fa fa-trash" aria-hidden="true"></i>
-          </button>
-          <button class="btn btn-warning" type="button" data-target="#editEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
-            <i class="fa fa-pencil" aria-hidden="true"></i>
-          </button>
-        </div>
+    </div>
+    <div class="event-info-container">
+      <div class="event-info-subcontainer">
+        <a href="{{ event.url }}" class="event-link" target="_blank">
+          <p class="event-name">{{ event.name }}</p>
+          <p class="event-location">{{ event.city }},&nbsp;{{ event.state }}</p>
+        </a>
+      </div>
+      <div class="edit-event-container text-right" *ngIf="authService.loggedIn();">
+        <button class="btn btn-danger" type="button" data-target="#deleteEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
+          <i class="fa fa-trash" aria-hidden="true"></i>
+        </button>
+        <button class="btn btn-warning" type="button" data-target="#editEventModal" data-toggle="modal" (click)="getCurrentEvent(event._id)">
+          <i class="fa fa-pencil" aria-hidden="true"></i>
+        </button>
       </div>
     </div>
   </div>
-  <div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
-    <div class="col-md-12" >
-      <button type="button" name="button" data-target="#newEventModal" data-toggle="modal" class="btn btn-success btn-md">
-        <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Event
-      </button>
-    </div>
+</div>
+<div class="row text-right add-button-container">
+  <div class="col-md-12" >
+    <button *ngIf="authService.loggedIn();" type="button" name="button" data-target="#newEventModal" data-toggle="modal" class="btn btn-success btn-md">
+      <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Event
+    </button>
   </div>
 </div>
 

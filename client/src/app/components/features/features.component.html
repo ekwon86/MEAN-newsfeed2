@@ -4,8 +4,8 @@
   <div class="panel-heading">
     <h3 class="panel-title">{{ feature.name }}
       <span *ngIf="!isAdmin">
-        <span class="label label-success labels" *ngIf="feature.type === 1">NEW</span>
-      </span>
+      <span class="label label-success labels" *ngIf="feature.type === 1">NEW</span>
+    </span>
     </h3>
   </div>
   <div class="panel-body">
@@ -17,6 +17,13 @@
     </button>
     <button class="btn btn-warning" type="button" data-target="#editFeatureModal" data-toggle="modal" (click)="getCurrentFeature(feature._id)">
       <i class="fa fa-pencil" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
+<div class="row text-right add-button-container">
+  <div class="col-md-12" >
+    <button *ngIf="authService.loggedIn();" type="button" name="button" data-target="#newFeatureModal" data-toggle="modal" class="btn btn-success btn-md">
+      <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Feature
     </button>
   </div>
 </div>
@@ -169,10 +176,4 @@
   </div>
 </div>
 
-<div class="row text-right add-button-container" *ngIf="authService.loggedIn();">
-  <div class="col-md-12" >
-    <button type="button" name="button" data-target="#newFeatureModal" data-toggle="modal" class="btn btn-success btn-md">
-      <i class="fa fa-plus web-icons" aria-hidden="true"></i>Add Feature
-    </button>
-  </div>
-</div>
+
