@@ -30,9 +30,9 @@ app.use(bodyParser.json()); // Parse application/json
 
 
 // DEVELOPMENT
-// app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
+app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend
 // PRODUCTION
-app.use(express.static(__dirname + '/public'));
+// app.use(express.static(__dirname + '/public'));
 
 /** Routes **/
 app.use('/authentication', authentication);

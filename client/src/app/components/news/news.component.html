@@ -2,8 +2,8 @@
 
 <div class="news-section">
   <div class="news-container" *ngFor="let news of newsPosts">
-    <div class="news-img-container" [ngStyle]="{ 'background-image': 'url(assets/' + news.imgPath + ')'}"></div>
-    <!--<div class="news-img-container" [ngStyle]="{ 'background-image': 'url(../../../assets/' + news.imgPath + ')'}"></div>-->
+    <!--<div class="news-img-container" [ngStyle]="{ 'background-image': 'url(assets/' + news.imgPath + ')'}"></div>-->
+    <div class="news-img-container" [ngStyle]="{ 'background-image': 'url(../../../assets/' + news.imgPath + ')'}"></div>
     <div class="news-info-container">
       <div class="edit-news-container" *ngIf="authService.loggedIn();">
         <button class="btn btn-danger" type="button" data-target="#deleteNewsModal" data-toggle="modal" (click)="getCurrentNews(news._id)">

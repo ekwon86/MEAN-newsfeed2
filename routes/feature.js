@@ -1,7 +1,33 @@
 const Feature = require('../models/feature');
 const config = require('../config/database');
+const multer = require('multer');
+
+let storage = multer.diskStorage({
+    destination: function(req, file, cb) {
+        // DEV
+        cb(null, 'client/src/assets/')
+        // PROD
+        // cb(null, 'public/assets/')
+    },
+    filename: function (req, file, cb) {
+        var datetimestamp = Date.now();
+        cb(null, file.fieldname + '-' + datetimestamp + '.' + file.originalname.split('.')[file.originalname.split('.').length -1]);
+    }
+});
+
+let upload = multer({ storage: storage }).single('img');
+
 
 module.exports = (router) => {
+    /*** POST TO MULTER **/
+    router.post('/featureImage', upload, (req, res) => {
+        upload(req, res, (err, url) => {
+            if(err) {
+                res.json({ success: false, message: 'There was an error uploading the image', err });
+            }
+            res.json({ success: true, url: req.file.filename });
+        });
+    });
     /** CREATE NEW FEATURE **/
     router.post('/newFeature', (req, res) => {
         if(!req.body.name) {

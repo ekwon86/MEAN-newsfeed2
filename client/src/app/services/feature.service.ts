@@ -25,6 +25,15 @@ export class FeatureService {
     });
   }
 
+  createPicHeader() {
+    this.authService.loadToken(); // Get token so it can be attached to headers
+    this.options = new RequestOptions({
+      headers: new Headers({
+        'Accept': 'application/json'
+      })
+    })
+  }
+
   // Function to get single feature
   getSingleFeature(id) {
     this.createAuthenticationHeaders();
@@ -56,4 +65,8 @@ export class FeatureService {
     return this.http.delete(this.domain + 'features/deleteFeature/' + id, this.options).map(res => res.json());
   }
 
+  newPicture(formData){
+    this.createPicHeader();
+    return this.http.post(this.domain + 'features/featureImage', formData, this.options).map(res => res.json());
+  }
 }

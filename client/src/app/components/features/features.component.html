@@ -71,6 +71,22 @@
             </div>
           </div>
           <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="imgPath">Image</label>
+                <input type="file" (change)="fileChange($event)" class="form-control" placeholder="Upload file" accept=".png,.jpeg,.jpg">
+                <input type="hidden" class="form-control" [(ngModel)]="imgPath" name="imgPath" formControlName="imgPath">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 show-hide-message" *ngIf="imgMessage">
+              <div [ngClass]="imgMessageClass">
+                {{ imgMessage }}
+              </div>
+            </div>
+          </div>
+          <div class="row">
             <div class="col-md-4">
               <div class="form-group">
                 <label for="type">Product Type</label>

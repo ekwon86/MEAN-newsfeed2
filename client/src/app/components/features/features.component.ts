@@ -9,15 +9,19 @@ import { FeatureService } from '../../services/feature.service';
   styleUrls: ['./features.component.css']
 })
 export class FeaturesComponent implements OnInit {
-
   currentFeature = {
     name: '',
     description: '',
     type: '',
+    imgPath: '',
     _id: ''
   };
+
+  imgPath = '';
   messageClass;
   message;
+  imgMessageClass;
+  imgMessage;
   newFeature = false;
   loadingFeatures = false;
   form;
@@ -51,6 +55,9 @@ export class FeaturesComponent implements OnInit {
       ])],
       type: ['', Validators.compose([
          Validators.required
+      ])],
+      imgPath: ['', Validators.compose([
+        Validators.required
       ])]
     });
   }
@@ -175,6 +182,30 @@ export class FeaturesComponent implements OnInit {
         this.currentFeature = data.feature;
       }
     });
+  }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData:FormData = new FormData();
+      formData.append('img', file, file.name);
+      this.featureService.newPicture(formData).subscribe(data => {
+          if(!data.success) {
+            this.imgMessageClass = 'alert alert-danger';
+            this.imgMessage = 'There was an error';
+          } else {
+            this.imgMessageClass = 'alert alert-success';
+            this.imgMessage = 'Image was successfully uploaded!';
+            this.imgPath = data.url;
+            setTimeout(() => {
+              this.imgMessageClass = false;
+              this.imgMessage = false;
+            }, 2000);
+          }
+        }
+      );
+    }
   }
 
   initialize() {

@@ -4,8 +4,10 @@ const multer = require('multer');
 
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {
-        // cb(null, 'client/src/assets/')
-        cb(null, 'public/assets/')
+        // DEV
+        cb(null, 'client/src/assets/')
+        // PROD
+        // cb(null, 'public/assets/')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
