@@ -1,25 +1,30 @@
 <h1 class="page-header">New Features</h1>
 
-<div class="panel panel-primary" *ngFor="let feature of featurePosts">
-  <div class="panel-heading">
-    <h3 class="panel-title">{{ feature.name }}
-      <span *ngIf="!isAdmin">
-      <span class="label label-success labels" *ngIf="feature.type === 1">NEW</span>
-    </span>
-    </h3>
+<div class="feature-container" *ngFor="let feature of featurePosts">
+  <div class="feature-icon-holder">
+    <img src="../../../assets/icon-form-customforms.png" alt="testicon" class="feature-icon">
   </div>
-  <div class="panel-body">
-    <p>{{ feature.description }}</p>
-  </div>
-  <div class="panel-footer text-right" *ngIf="authService.loggedIn();">
-    <button class="btn btn-danger" type="button" data-target="#deleteFeatureModal" data-toggle="modal" (click)="getCurrentFeature(feature._id)">
+  <div class="feature-info-holder">
+    <div class="edit-feature-container text-right" *ngIf="authService.loggedIn();">
+      <button class="btn btn-danger" type="button" data-target="#deleteFeatureModal" data-toggle="modal" (click)="getCurrentFeature(feature._id)">
       <i class="fa fa-trash" aria-hidden="true"></i>
-    </button>
-    <button class="btn btn-warning" type="button" data-target="#editFeatureModal" data-toggle="modal" (click)="getCurrentFeature(feature._id)">
+      </button>
+      <button class="btn btn-warning" type="button" data-target="#editFeatureModal" data-toggle="modal" (click)="getCurrentFeature(feature._id)" style="margin-left: 3px;">
       <i class="fa fa-pencil" aria-hidden="true"></i>
-    </button>
+      </button>
+    </div>
+    <div class="feature-info-subcontainer">
+      <p class="feature-name">
+        <strong>{{ feature.name }}
+          <span class="label label-success feature-labels" *ngIf="isDevAdmin || isDevUser">NEW</span>
+          <span class="label label-success feature-labels" *ngIf="isProdAdmin || isProdUser">COMING SOON</span>
+        </strong>
+      </p>
+      <p class="feature-description">{{ feature.description }}</p>
+    </div>
   </div>
 </div>
+
 <div class="row text-right add-button-container">
   <div class="col-md-12" >
     <button *ngIf="authService.loggedIn();" type="button" name="button" data-target="#newFeatureModal" data-toggle="modal" class="btn btn-success btn-md">
@@ -27,7 +32,6 @@
     </button>
   </div>
 </div>
-
 
 <!--NEW FEATURE MODAL-->
 <div id="newFeatureModal" class="modal fade" role="dialog">
@@ -72,11 +76,10 @@
                 <label for="type">Product Type</label>
                 <div [ngClass]="{'has-success': form.controls.type.valid, ' has-error': form.controls.type.dirty && form.controls.type.errors}">
                   <select name="type" formControlName="type" class="form-control">
+                    <option value="">Select</option>
                     <option value="1">Enterprise</option>
-                    <option value="2">Anywhere - Dev Admin</option>
-                    <option value="3">Anywhere - Dev User</option>
-                    <option value="4">Anywhere - Prod Admin</option>
-                    <option value="5">Anywhere - Prod User</option>
+                    <option value="2">Anywhere - Visible To All</option>
+                    <option value="3">Anywhere - Visible To Admin Only</option>
                   </select>
                 </div>
               </div>

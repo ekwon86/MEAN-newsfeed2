@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { NewsService } from '../../services/news.service';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-news',
@@ -9,16 +11,20 @@ import { NewsService } from '../../services/news.service';
   styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-
   currentNews = {
     title: '',
     date: '',
     snippet: '',
     url: '',
+    imgPath: '',
     _id: ''
   };
+
+  imgPath = '';
   message;
+  imgMessage;
   messageClass;
+  imgMessageClass;
   newNews = false;
   form;
   processing = false;
@@ -27,7 +33,7 @@ export class NewsComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     public authService: AuthService,
-    private newsService: NewsService
+    private newsService: NewsService,
   ) {
     this.createNewNewsForm();
   }
@@ -49,6 +55,9 @@ export class NewsComponent implements OnInit {
       url: ['', Validators.compose([
         Validators.required,
         this.urlValidation
+      ])],
+      imgPath: ['', Validators.compose([
+        Validators.required
       ])]
     });
   }
@@ -59,6 +68,7 @@ export class NewsComponent implements OnInit {
     this.form.get('date').enable();
     this.form.get('snippet').enable();
     this.form.get('url').enable();
+    this.form.get('imgPath').enable();
   }
 
   disableFormNewNewsForm() {
@@ -66,6 +76,7 @@ export class NewsComponent implements OnInit {
     this.form.get('date').disable();
     this.form.get('snippet').disable();
     this.form.get('url').disable();
+    this.form.get('imgPath').disable();
   }
 
 
@@ -78,7 +89,8 @@ export class NewsComponent implements OnInit {
       title: this.form.get('title').value,
       date: this.form.get('date').value,
       snippet: this.form.get('snippet').value,
-      url: this.form.get('url').value
+      url: this.form.get('url').value,
+      imgPath: this.form.get('imgPath').value
     };
 
     this.newsService.newNews(news).subscribe(data => {
@@ -173,6 +185,31 @@ export class NewsComponent implements OnInit {
       }
     });
   }
+
+  fileChange(event) {
+    let fileList: FileList = event.target.files;
+    if(fileList.length > 0) {
+      let file: File = fileList[0];
+      let formData:FormData = new FormData();
+      formData.append('img', file, file.name);
+      this.newsService.newPicture(formData).subscribe(data => {
+          if(!data.success) {
+            this.imgMessageClass = 'alert alert-danger';
+            this.imgMessage = 'There was an error';
+          } else {
+            this.imgMessageClass = 'alert alert-success';
+            this.imgMessage = 'Image was successfully uploaded!';
+            this.imgPath = data.url;
+            setTimeout(() => {
+                this.imgMessageClass = false;
+                this.imgMessage = false;
+            }, 2000);
+          }
+        }
+      );
+    }
+  }
+
 
   ngOnInit() {
     this.getAllNews();

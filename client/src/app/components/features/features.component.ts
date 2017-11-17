@@ -130,10 +130,16 @@ export class FeaturesComponent implements OnInit {
         this.featurePosts = data.features;
       } else {
         for(let i = 0; i < data.features.length; i++) {
-          if(this.isDevAdmin && data.features[i].type === 1) {
+          if(this.isEnterprise && data.features[i].type === 1) {
             this.featurePosts.push(data.features[i]);
-          } else if(this.isEnterprise && data.features[i].type === 2) {
-            this.featurePosts.push(data.features[i]);
+          } else if (!this.isEnterprise) {
+            if(this.isProdAdmin && data.features[i].type === 3) {
+              this.featurePosts.push(data.features[i]);
+            } else if (this.isDevAdmin && data.features[i].type === 3) {
+              this.featurePosts.push(data.features[i]);
+            } else if (data.features[i].type === 2) {
+              this.featurePosts.push(data.features[i]);
+            }
           }
         }
       }

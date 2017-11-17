@@ -25,6 +25,15 @@ export class NewsService {
     });
   }
 
+  createPicHeader() {
+    this.authService.loadToken(); // Get token so it can be attached to headers
+    this.options = new RequestOptions({
+      headers: new Headers({
+        'Accept': 'application/json'
+      })
+    })
+  }
+
   // Function to get single news article
   getSingleNews(id) {
     this.createAuthenticationHeaders();
@@ -56,5 +65,8 @@ export class NewsService {
     return this.http.delete(this.domain + 'news/deleteNews/' + id, this.options).map(res => res.json());
   }
 
-
+  newPicture(formData){
+    this.createPicHeader();
+    return this.http.post(this.domain + 'news/newsImage', formData, this.options).map(res => res.json());
+  }
 }

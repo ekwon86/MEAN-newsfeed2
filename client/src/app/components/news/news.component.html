@@ -2,7 +2,7 @@
 
 <div class="news-section">
   <div class="news-container" *ngFor="let news of newsPosts">
-    <div class="news-img-container"></div>
+    <div class="news-img-container" [ngStyle]="{ 'background-image': 'url(../../../assets/' + news.imgPath + ')'}"></div>
     <div class="news-info-container">
       <div class="edit-news-container" *ngIf="authService.loggedIn();">
         <button class="btn btn-danger" type="button" data-target="#deleteNewsModal" data-toggle="modal" (click)="getCurrentNews(news._id)">
@@ -26,7 +26,6 @@
     </div>
   </div>
 </div>
-
 
 
 <!--EDIT NEWS MODAL-->
@@ -133,6 +132,22 @@
                 <div [ngClass]="{'has-success': form.controls.snippet.valid, 'has-error': form.controls.snippet.dirty && form.controls.snippet.errors}">
                   <textarea type="text" name="snippet" class="form-control" autocomplete="off" formControlName="snippet" rows="5"></textarea>
                 </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="form-group">
+                <label for="imgPath">Image</label>
+                <input type="file" (change)="fileChange($event)" class="form-control" placeholder="Upload file" accept=".png,.jpeg,.jpg">
+                <input type="hidden" class="form-control" [(ngModel)]="imgPath" name="imgPath" formControlName="imgPath">
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 show-hide-message" *ngIf="imgMessage">
+              <div [ngClass]="imgMessageClass">
+                {{ imgMessage }}
               </div>
             </div>
           </div>

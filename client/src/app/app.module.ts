@@ -16,7 +16,6 @@ import { FeaturesComponent } from './components/features/features.component';
 import { NewsComponent } from './components/news/news.component';
 import { FormupdatesComponent } from './components/formupdates/formupdates.component';
 
-
 import { AuthService } from './services/auth.service';
 import { EventService } from './services/event.service';
 import { FeatureService } from './services/feature.service';

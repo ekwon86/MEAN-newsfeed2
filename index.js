@@ -4,11 +4,11 @@ const app = express();
 const router = express.Router();
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-const config = require('./config/database');
 const path = require('path');
-const bodyParser = require('body-parser');
 const cors = require('cors');
+const bodyParser = require('body-parser');
 const port = process.env.PORT || 8080;
+const config = require('./config/database');
 const authentication = require('./routes/authentication')(router);
 const events = require('./routes/event')(router);
 const features = require('./routes/feature')(router);
@@ -27,6 +27,7 @@ mongoose.connect(config.uri, (err) => {
 app.use(cors({ origin: 'http://localhost:4200 '}));
 app.use(bodyParser.urlencoded({ extended: false })); // Parse application/x-www-form-urlencoded
 app.use(bodyParser.json()); // Parse application/json
+
 
 // DEVELOPMENT
 app.use(express.static(__dirname + '/client/dist/')); // Provide static directory for frontend

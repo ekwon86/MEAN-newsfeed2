@@ -59,6 +59,10 @@ const newsSchema = new Schema({
         type: String,
         required: true,
         validate: urlValidators
+    },
+    imgPath: {
+        type: String,
+        required: true
     }
 });
 

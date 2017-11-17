@@ -1,0 +1,68 @@
+.feature-container {
+  min-height: 125px;
+  height: auto;
+  border: 1px solid rgba(0,0,0,0.1);
+  font-size: 0;
+  margin-bottom: 10px;
+}
+
+.feature-labels {
+  margin-left: 5px;
+  font-size: 12px;
+}
+
+.edit-feature-container {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  height: 55px;
+  width: 102px;
+  z-index: 999;
+}
+
+.feature-container div {
+  vertical-align: top;
+}
+
+.feature-icon-holder {
+  display: inline-block;
+  width: 15%;
+  text-align: center;
+  height: auto;
+  min-height: inherit;
+  border-right: 1px solid rgba(0,0,0,0.1);
+  position: relative;
+}
+
+.feature-info-holder {
+  display: inline-block;
+  width: 85%;
+  min-height: inherit;
+  height: auto;
+  position: relative;
+}
+
+.feature-info-subcontainer {
+  position: absolute;
+  top: 50%;
+  padding: 0 3%;
+  transform: translate(0,-50%);
+}
+
+.feature-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform:translate(-50%,-50%);
+}
+
+.feature-name {
+  font-size: 18px;
+}
+
+.feature-description {
+  font-size: 14px;
+  text-align: justify;
+}
+

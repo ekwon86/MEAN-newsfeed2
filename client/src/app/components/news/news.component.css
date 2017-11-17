@@ -7,8 +7,11 @@
   height: auto;
   width: 100%;
   position: relative;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-left: 1px solid rgba(0,0,0,0.1);
+  border-right: 1px solid rgba(0,0,0,0.1);
   border-top:2px solid rgb(54, 190, 235);
-  box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);
+  /*box-shadow: 0 1px 6px 0 rgba(0,0,0,.12), 0 1px 6px 0 rgba(0,0,0,.12);*/
   padding: 12px;
   margin-bottom: 10px;
 }
@@ -31,7 +34,7 @@
   min-height: inherit;
   width: 20%;
   border: 1px solid rgba(0,0,0,0.05);
-  background-image: url('../../../assets/5megatrends.jpg');
+  /*background-image: url('../../../assets/5megatrends.jpg');*/
   background-size: cover;
   background-position: center;
   display: inline-block;
