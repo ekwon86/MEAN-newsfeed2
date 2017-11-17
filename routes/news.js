@@ -15,7 +15,6 @@ let storage = multer.diskStorage({
 
 let upload = multer({ storage: storage }).single('img');
 
-
 module.exports = (router) => {
     /*** POST TO MULTER **/
     router.post('/newsImage', upload, (req, res) => {

@@ -205,6 +205,8 @@ export class NewsComponent implements OnInit {
                 this.imgMessage = false;
             }, 2000);
           }
+        }, error => {
+          console.log(error);
         }
       );
     }
