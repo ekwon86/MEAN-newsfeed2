@@ -2,7 +2,8 @@
 
 <div class="feature-container" *ngFor="let feature of featurePosts">
   <div class="feature-icon-holder">
-    <img src="../../../assets/icon-form-customforms.png" alt="testicon" class="feature-icon">
+    <img src="../../../assets/{{ feature.imgPath }}" alt="featureicon" class="feature-icon">
+    <!--<img src="../../../assets/icon-form-customforms.png" alt="testicon" class="feature-icon">-->
   </div>
   <div class="feature-info-holder">
     <div class="edit-feature-container text-right" *ngIf="authService.loggedIn();">

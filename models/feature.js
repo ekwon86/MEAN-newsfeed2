@@ -12,6 +12,10 @@ const featureSchema = new Schema({
         type: String,
         required: true
     },
+    imgPath: {
+        type: String,
+        required: true
+    },
     type: {
         type: Number,
         required: true

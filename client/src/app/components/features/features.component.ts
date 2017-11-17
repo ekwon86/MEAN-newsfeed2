@@ -70,6 +70,7 @@ export class FeaturesComponent implements OnInit {
     const feature = {
       name: this.form.get('name').value,
       description: this.form.get('description').value,
+      imgPath: this.form.get('imgPath').value,
       type: this.form.get('type').value
     };
 
@@ -122,12 +123,14 @@ export class FeaturesComponent implements OnInit {
     this.form.get('name').enable();
     this.form.get('description').enable();
     this.form.get('type').enable();
+    this.form.get('imgPath').enable();
   }
 
   disableFormNewFeatureForm() {
     this.form.get('name').disable();
     this.form.get('description').disable();
     this.form.get('type').disable();
+    this.form.get('imgPath').disable();
   }
 
 
@@ -135,6 +138,7 @@ export class FeaturesComponent implements OnInit {
     this.featureService.getAllFeatures().subscribe(data => {
       if(!this.isDevAdmin && !this.isDevUser && !this.isProdAdmin && !this.isProdUser && !this.isEnterprise) {
         this.featurePosts = data.features;
+        console.log(this.featurePosts);
       } else {
         for(let i = 0; i < data.features.length; i++) {
           if(this.isEnterprise && data.features[i].type === 1) {

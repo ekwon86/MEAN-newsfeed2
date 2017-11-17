@@ -36,35 +36,44 @@ module.exports = (router) => {
             if(!req.body.description) {
                 res.json({ success: false, message: 'Feature description is required' });
             } else {
-                if(!req.body.type) {
-                    res.json({ success: false, message: 'Feature type is required' });
+                if(!req.body.imgPath) {
+                    res.json({ success: false, message: 'Feature image is required' });
                 } else {
-                    const feature = new Feature({
-                        name: req.body.name,
-                        description: req.body.description,
-                        type: req.body.type
-                    });
-                    feature.save((err) => {
-                        if(err) {
-                            if(err.errors) {
-                                if(err.errors.name) {
-                                    res.json({ success: false, message: err.errors.name.message });
-                                }  else {
-                                    if(err.errors.description) {
-                                        res.json({ success: false, message: err.errors.description.message });
-                                    } else {
-                                        if(err.errors.type) {
-                                            res.json({ success: false, message: err.errors.type.message });
+                    if(!req.body.type) {
+                        res.json({ success: false, message: 'Feature type is required' });
+                    } else {
+                        const feature = new Feature({
+                            name: req.body.name,
+                            description: req.body.description,
+                            imgPath: req.body.imgPath,
+                            type: req.body.type
+                        });
+                        feature.save((err) => {
+                            if(err) {
+                                if(err.errors) {
+                                    if(err.errors.name) {
+                                        res.json({ success: false, message: err.errors.name.message });
+                                    }  else {
+                                        if(err.errors.description) {
+                                            res.json({ success: false, message: err.errors.description.message });
+                                        } else {
+                                            if(err.errors.imgPath) {
+                                                res.json({ success: false, message: err.errors.imgPath.message });
+                                            } else {
+                                                if(err.errors.type) {
+                                                    res.json({ success: false, message: err.errors.type.message });
+                                                }
+                                            }
                                         }
                                     }
+                                } else {
+                                    res.json({ success: false, message: err });
                                 }
                             } else {
-                                res.json({ success: false, message: err });
+                                res.json({ success: true, message: 'Feature saved!'});
                             }
-                        } else {
-                            res.json({ success: true, message: 'Feature saved!'});
-                        }
-                    });
+                        });
+                    }
                 }
             }
         }
