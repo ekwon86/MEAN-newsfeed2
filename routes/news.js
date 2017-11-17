@@ -5,7 +5,7 @@ const multer = require('multer');
 let storage = multer.diskStorage({
     destination: function(req, file, cb) {
         // cb(null, 'client/src/assets/')
-        cb(null, 'uploads/')
+        cb(null, 'public/assets/')
     },
     filename: function (req, file, cb) {
         var datetimestamp = Date.now();
@@ -20,9 +20,10 @@ module.exports = (router) => {
     /*** POST TO MULTER **/
     router.post('/newsImage', upload, (req, res) => {
         let originalFileName = req.file.originalname;
+        console.log(originalFileName);
         upload(req, res, (err, url) => {
             if(err) {
-                res.json({ success: false, message: err });
+                res.json({ success: false, message: 'There was an error uploading the image', err });
             }
             res.json({ success: true, url: req.file.filename });
         });
