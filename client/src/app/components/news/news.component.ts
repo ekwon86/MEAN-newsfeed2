@@ -196,7 +196,6 @@ export class NewsComponent implements OnInit {
           if(!data.success) {
             this.imgMessageClass = 'alert alert-danger';
             this.imgMessage = 'There was an error';
-            console.log(data);
           } else {
             this.imgMessageClass = 'alert alert-success';
             this.imgMessage = 'Image was successfully uploaded!';
