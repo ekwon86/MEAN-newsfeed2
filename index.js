@@ -13,6 +13,7 @@ const authentication = require('./routes/authentication')(router);
 const events = require('./routes/event')(router);
 const features = require('./routes/feature')(router);
 const news = require('./routes/news')(router);
+const integrations = require('./routes/integration')(router);
 
 /** DB Connection **/
 mongoose.connect(config.uri, (err) => {
@@ -39,6 +40,7 @@ app.use('/authentication', authentication);
 app.use('/events', events);
 app.use('/features', features);
 app.use('/news', news);
+app.use('/integrations', integrations);
 
 // /** Connect server to Angular 2 index.html **/
 app.get('*', (req, res) => {

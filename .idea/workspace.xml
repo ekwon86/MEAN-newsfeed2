@@ -2,12 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c837e877-03e5-4b4a-9970-ee08034459ec" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/uploads/img-1510933506907.jpg" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/models/integrations.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/routes/integration.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/features/features.component.html" afterPath="$PROJECT_DIR$/client/src/app/components/features/features.component.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/src/app/components/features/features.component.ts" afterPath="$PROJECT_DIR$/client/src/app/components/features/features.component.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.js" afterPath="$PROJECT_DIR$/index.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/models/feature.js" afterPath="$PROJECT_DIR$/models/feature.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/routes/feature.js" afterPath="$PROJECT_DIR$/routes/feature.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -21,7 +20,18 @@
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
-    <leaf />
+    <leaf>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="542">
+              <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
@@ -63,8 +73,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/src/app/services/event.service.ts" />
-        <option value="$PROJECT_DIR$/client/src/app/components/navbar/navbar.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/services/validate.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/register/register.component.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/register/register.component.html" />
@@ -108,12 +116,14 @@
         <option value="$PROJECT_DIR$/config/database.js" />
         <option value="$PROJECT_DIR$/client/src/app/components/news/news.component.html" />
         <option value="$PROJECT_DIR$/client/src/app/services/auth.service.ts" />
-        <option value="$PROJECT_DIR$/index.js" />
         <option value="$PROJECT_DIR$/client/src/app/services/feature.service.ts" />
         <option value="$PROJECT_DIR$/client/src/app/components/features/features.component.html" />
         <option value="$PROJECT_DIR$/routes/feature.js" />
         <option value="$PROJECT_DIR$/client/src/app/components/features/features.component.ts" />
         <option value="$PROJECT_DIR$/models/feature.js" />
+        <option value="$PROJECT_DIR$/models/integrations.js" />
+        <option value="$PROJECT_DIR$/routes/integration.js" />
+        <option value="$PROJECT_DIR$/index.js" />
       </list>
     </option>
   </component>
@@ -177,7 +187,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="models" />
+              <option name="myItemId" value="routes" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -506,18 +516,19 @@
       <workItem from="1510844889424" duration="14861000" />
       <workItem from="1510859847188" duration="1090000" />
       <workItem from="1510860993984" duration="11947000" />
-      <workItem from="1510931322726" duration="6011000" />
+      <workItem from="1510931322726" duration="7740000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="136356000" />
+    <option name="totallyTimeSpent" value="138085000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="TypeScript" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.17123288" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18440464" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11038961" sideWeight="0.50421494" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -565,21 +576,12 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Procfile" />
-    <entry file="file://$PROJECT_DIR$/public/scripts.558f155b75a058914ce8.bundle.js" />
     <entry file="file://$PROJECT_DIR$/public/5megatrends.4ed2be3aadf31d8f6665.jpg" />
     <entry file="file://$PROJECT_DIR$/public/index.html" />
     <entry file="file://$PROJECT_DIR$/client/src/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="153">
           <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/routes/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="67" column="3" lean-forward="false" selection-start-line="67" selection-start-column="3" selection-end-line="84" selection-end-column="7" />
         </state>
       </provider>
     </entry>
@@ -616,13 +618,6 @@
         <state relative-caret-position="1154">
           <caret line="394" column="7" lean-forward="true" selection-start-line="394" selection-start-column="7" selection-end-line="394" selection-end-column="7" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/models/event.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="71" column="0" lean-forward="true" selection-start-line="71" selection-start-column="0" selection-end-line="97" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -744,14 +739,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="0" lean-forward="true" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/src/app/services/news.service.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-104">
@@ -817,14 +804,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/routes/feature.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="782">
-          <caret line="80" column="0" lean-forward="true" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/news.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1768">
@@ -841,18 +820,66 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/models/feature.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="17" column="6" lean-forward="false" selection-start-line="17" selection-start-column="6" selection-end-line="17" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/news.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="593">
           <caret line="62" column="3" lean-forward="false" selection-start-line="62" selection-start-column="3" selection-end-line="65" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="70" column="0" lean-forward="true" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/integrations.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="493">
+          <caret line="29" column="23" lean-forward="false" selection-start-line="29" selection-start-column="23" selection-end-line="29" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/event.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1224">
+          <caret line="67" column="3" lean-forward="false" selection-start-line="67" selection-start-column="3" selection-end-line="84" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/models/feature.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="4" lean-forward="false" selection-start-line="13" selection-start-column="4" selection-end-line="16" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/feature.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="236">
+          <caret line="147" column="0" lean-forward="true" selection-start-line="147" selection-start-column="0" selection-end-line="171" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/routes/integration.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="90" column="79" lean-forward="false" selection-start-line="90" selection-start-column="79" selection-end-line="90" selection-end-column="79" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="542">
+          <caret line="42" column="39" lean-forward="false" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
           <folding />
         </state>
       </provider>
